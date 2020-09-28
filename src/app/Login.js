@@ -12,7 +12,22 @@ class Login extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleEmailChange(event) {this.setState({emailAddress: event.target.value});}
+    
     handlePasswordChange(event) {this.setState({password: event.target.value});}
+
+    handleLogin(body, JWR) {
+      console.log('Sails responded with: ', body);
+      console.log('with headers: ', JWR.headers);
+      console.log('and with status code: ', JWR.statusCode);
+      
+      /*
+      if(event==='OK') {
+        console.log('Successfully logged in');
+        // this.props.onLogin(); ???????
+      }
+      else {console.log(event);}
+      */
+    }
     handleSubmit(event) {
       const loginReqOptions = {
         method: 'put',
@@ -25,9 +40,8 @@ class Login extends React.Component {
             //_csrf: 'USER CSRF TOKEN'
         }
       };
-      this.props.api.socket.request(loginReqOptions, handleLoginRes);
-      alert('Email was submitted: ' + this.state.emailAddress + ' And password: ' + this.state.password);
-      // event.preventDefault();
+      this.props.api.socket.request(loginReqOptions, this.handleLogin);
+      event.preventDefault();
     }
     render() {
       return (
@@ -42,13 +56,6 @@ class Login extends React.Component {
         </form>
       );
     }
-}
-
-function handleLoginRes(res) {
-  console.log(res);
-  if(res==='OK'){
-    console.log('SUPER_OKEY')
-  }
 }
 
 export default Login;

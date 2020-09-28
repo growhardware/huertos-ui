@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
-// de GH api:
+// de GH:
 import Login from './Login.js'
 import Dashboard from './Dashboard.js'
 
 const socketIOClient = require('socket.io-client');
 const sailsIOClient = require('sails.io.js');
 
-var sailsIo = sailsIOClient(socketIOClient);
-sailsIo.sails.url = 'http://192.168.1.47:1337';
+var io = sailsIOClient(socketIOClient);
+io.sails.url = 'http://192.168.1.47:1337';
+io.sails.environment = 'development';
+
 
 class Personal extends React.Component {
   constructor(props){
@@ -17,11 +19,19 @@ class Personal extends React.Component {
       isLoggedIn: false,
     };
   } 
-  login() {
+  handleLogin() {
     this.setState({isLoggedIn: true});
   }
   render() {
-    return this.state.isLoggedIn ? <Dashboard/> : <Login api={sailsIo} onLogin={this.login}/>;
+    // return this.state.isLoggedIn ? <Dashboard/> : <Login api={sailsIo} onLogin={this.handleLogin}/>;
+    //return sailsIo ? <Dashboard/> : <Login api={sailsIo} onLogin={this.handleLogin}/>;
+    return (
+      <div>
+      <Dashboard api={this.props.io}/>
+      <br/>
+      <Login api={this.props.io}/>
+      </div>
+    );
   }
 }
 
@@ -34,7 +44,7 @@ function App() {
         <h4>El sistema de IoT Open Source de GrowHardware</h4>
       </header>
       <footer className="App-footer">
-        <Personal/>
+        <Personal io={io}/>
       </footer>
     </div>
   );
