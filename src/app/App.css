@@ -47,3 +47,10 @@
     transform: rotate(360deg);
   }
 }
+
+.switch_on {
+  color: green;
+}
+.switch_off {
+  color: red;
+}

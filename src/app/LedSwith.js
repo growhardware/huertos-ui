@@ -34,7 +34,7 @@ class LedSwitch extends React.Component {
         return (
             <div>
                 <p>Set the led:</p>
-                <button onClick={this.handleClick}>{this.state.led ? 'Turn ON' : 'Turn OFF'}</button>
+                <button className={this.state.led ? "switch_on" : "switch_off"} onClick={this.handleClick}>{this.state.led ? 'Turn ON' : 'Turn OFF'}</button>
             </div>
         )
     }

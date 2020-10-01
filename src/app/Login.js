@@ -10,23 +10,25 @@ class Login extends React.Component {
       this.handleEmailChange = this.handleEmailChange.bind(this);
       this.handlePasswordChange = this.handlePasswordChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleLogin = this.handleLogin.bind(this);
     }
     handleEmailChange(event) {this.setState({emailAddress: event.target.value});}
     
     handlePasswordChange(event) {this.setState({password: event.target.value});}
 
     handleLogin(body, JWR) {
+      /*
       console.log('Sails responded with: ', body);
       console.log('with headers: ', JWR.headers);
       console.log('and with status code: ', JWR.statusCode);
-      
-      /*
-      if(event==='OK') {
-        console.log('Successfully logged in');
-        // this.props.onLogin(); ???????
-      }
-      else {console.log(event);}
       */
+      
+      if(body==='OK') {
+        console.log('Successfully logged in');
+        return this.props.onLogin;
+      }
+      else {console.log(body);}
+    
     }
     handleSubmit(event) {
       const loginReqOptions = {

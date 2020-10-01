@@ -26,7 +26,6 @@ class Device extends React.Component {
     };
     this.handleSettingsChange = this.handleSettingsChange.bind(this);
   }
-  handleSettingsChange(event) {this.setState({settings:{led: event.target.value}});}
   render() {
     return (
       <div>

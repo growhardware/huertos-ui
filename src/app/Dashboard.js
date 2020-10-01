@@ -8,12 +8,12 @@ var devices = [
 ];
 
 class Dashboard extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        isLoggedIn: false,
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false,
     }
+  }
     /*
     renderDevices() {
       devices.map((i) => {
@@ -28,8 +28,8 @@ class Dashboard extends React.Component {
         <div>
           <h2>Your Dashboard:</h2>
           <h4>Devices:</h4>
-          
-          <div> <LedSwith api={this.props.api} id="5f3ee268e201f20f16a85397"></LedSwith></div>          
+          {// <DevStatus api={this.props.api} id="5f3ee268e201f20f16a85397"></DevStatus>
+          }<div> <LedSwith api={this.props.api} id="5f3ee268e201f20f16a85397"></LedSwith></div>          
         </div>
       );
     }
