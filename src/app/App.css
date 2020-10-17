@@ -14,8 +14,19 @@
 }
 
 .App-header {
-  background-color: #282633;
+  background-color: #e24800;
   min-height: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(6px + 2vmin);
+  color: white;
+}
+
+.App-main {
+  background-color: #282633;
+  min-height: 65vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +37,7 @@
 
 .App-footer {
   background-color: #382012;
-  min-height: 90vh;
+  min-height: 13vh;
   display: flex;
   flex-direction: column;
   align-items: center;

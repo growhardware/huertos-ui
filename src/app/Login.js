@@ -10,13 +10,14 @@ class Login extends React.Component {
       this.handleEmailChange = this.handleEmailChange.bind(this);
       this.handlePasswordChange = this.handlePasswordChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.handleLogin = this.handleLogin.bind(this);
+      this.handleResponse = this.handleResponse.bind(this);
+      this.handleLogout = this.handleLogout.bind(this);
     }
     handleEmailChange(event) {this.setState({emailAddress: event.target.value});}
     
     handlePasswordChange(event) {this.setState({password: event.target.value});}
 
-    handleLogin(body, JWR) {
+    handleResponse(body, JWR) {
       /*
       console.log('Sails responded with: ', body);
       console.log('with headers: ', JWR.headers);
@@ -25,7 +26,7 @@ class Login extends React.Component {
       
       if(body==='OK') {
         console.log('Successfully logged in');
-        return this.props.onLogin;
+        return this.props.onLogin();
       }
       else {console.log(body);}
     
@@ -42,21 +43,48 @@ class Login extends React.Component {
             //_csrf: 'USER CSRF TOKEN'
         }
       };
-      this.props.api.socket.request(loginReqOptions, this.handleLogin);
+      this.props.api.socket.request(loginReqOptions, this.handleResponse);
+      event.preventDefault();
+    }
+    handleLogout(event) {
+      const logoutReqOptions = {
+        method: 'get',
+        url: '/api/v1/account/logout',
+        headers: {
+            //_csrf: 'USER CSRF TOKEN'
+        }
+      };
+      this.props.api.socket.request(logoutReqOptions, (b) => {
+        if(b==='OK') {
+          console.log('Successfully logged out');
+          return this.props.onLogout();
+        }
+        else {console.log(b);}
+      });
       event.preventDefault();
     }
     render() {
-      return (
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Email:<br/>
-            <input type="email" value={this.state.emailAddress} onChange={this.handleEmailChange} /><br/>
-            Password:<br/>
-            <input type="password" value={this.state.password} onChange={this.handlePasswordChange} /><br/>
-          </label>
-          <input type="submit" value="Submit" /> 
-        </form>
-      );
+      const isLoggedIn = this.props.isLoggedIn;
+      if(isLoggedIn){
+        return (
+          <div>
+            <button onClick={this.handleLogout}>Logout</button>
+          </div>
+        );
+      }
+      else{
+        return (
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Email:<br/>
+              <input type="email" value={this.state.emailAddress} onChange={this.handleEmailChange} /><br/>
+              Password:<br/>
+              <input type="password" value={this.state.password} onChange={this.handlePasswordChange} /><br/>
+            </label>
+            <input type="submit" value="Submit" /> 
+          </form>
+        );
+      }
     }
 }
 

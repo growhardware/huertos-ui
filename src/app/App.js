@@ -8,41 +8,36 @@ const socketIOClient = require('socket.io-client');
 const sailsIOClient = require('sails.io.js');
 
 var io = sailsIOClient(socketIOClient);
-io.sails.url = 'http://192.168.1.43:1337';
+io.sails.url = 'http://192.168.1.47:1337';
 io.sails.environment = 'development';
 
 
-class Personal extends React.Component {
+class LoginControl extends React.Component {
   constructor(props){
     super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: false
     };
-    this.renderLogin = this.renderLogin.bind(this);
   } 
   handleLogin() {
     console.log('Hubo login');
     this.setState({isLoggedIn: true});
   }
-  renderLogin() {
-    if(this.state.isLoggedIn){
-      return <h3>Ahora logout!</h3>
-    }
-    else{
-      return <Login api={this.props.io} onLogin={this.handleLogin()}/>
-    }
+  handleLogout() {
+    console.log('Hubo logout');
+    this.setState({isLoggedIn: false});
   }
   render() {
     // return this.state.isLoggedIn ? <Dashboard/> : <Login api={sailsIo} onLogin={this.handleLogin}/>;
     //return sailsIo ? <Dashboard/> : <Login api={sailsIo} onLogin={this.handleLogin}/>;
+    const isLoggedIn = this.state.isLoggedIn;
     return (
       <div>
-      <Dashboard api={this.props.io}/>
-      <br/>
-      <div>
-        <this.renderLogin></this.renderLogin>
-      </div>
-      
+        <Dashboard api={this.props.io} isLoggedIn={isLoggedIn}/>
+        <br/>
+        <Login api={this.props.io} isLoggedIn={isLoggedIn} onLogout={this.handleLogout} onLogin={this.handleLogin}/>
       </div>
     );
   }
@@ -52,12 +47,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h4>El nuevo Frontend de</h4>
-        <h2>Huertos</h2>
+        <h3>Huertos</h3>
         <h4>El sistema de IoT Open Source de GrowHardware</h4>
       </header>
-      <div>
-        <Personal io={io}/>
+      <div className="App-main">
+        <LoginControl io={io}/>
       </div>
       <footer className="App-footer">
         Contact us:
@@ -65,5 +59,6 @@ function App() {
     </div>
   );
 }
+//
 
 export default App;

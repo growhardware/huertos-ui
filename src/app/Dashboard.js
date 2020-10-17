@@ -23,15 +23,20 @@ class Dashboard extends React.Component {
       <div>{this.renderDevices}</div>
     }*/
     render() {
-      return (
-
-        <div>
-          <h2>Your Dashboard:</h2>
-          <h4>Devices:</h4>
-          {// <DevStatus api={this.props.api} id="5f3ee268e201f20f16a85397"></DevStatus>
-          }<div> <LedSwith api={this.props.api} id="5f3ee268e201f20f16a85397"></LedSwith></div>          
-        </div>
-      );
+      const isLoggedIn = this.props.isLoggedIn;
+      if(isLoggedIn){
+        return (
+          <div>
+            <h2>Your Dashboard:</h2>
+            <h4>Devices:</h4>
+            {// <DevStatus api={this.props.api} id="5f3ee268e201f20f16a85397"></DevStatus>
+            }<div> <LedSwith api={this.props.api} id="5f3e9f3571afb3264ecd8dbe"></LedSwith></div>          
+          </div>
+        );
+      }
+      else{
+        return <h4>Login to access your dashboard.</h4>
+      }
     }
   }
 
