@@ -1,4 +1,5 @@
 import React from 'react';
+import Switch from './Switch.js'
 
 /*
 class createDevice extends React.Component {
@@ -24,21 +25,21 @@ class Device extends React.Component {
     this.state = {
       settings: {},
     };
-    this.handleSettingsChange = this.handleSettingsChange.bind(this);
+    // this.handleSettingsChange = this.handleSettingsChange.bind(this);
   }
   render() {
     return (
       <div>
         <label>
           kind:<br/>
-          <label>{this.props.kind}</label>
-          alias:<br/>
-          <label>{this.props.alias}</label>
-          status:<br/>
-          led: <label>{this.props.status.led}</label>
-          pushButton: <label>{this.props.status.pushButton}</label>
+          <label>{this.props.document.kind}</label>
+          <br/>alias:<br/>
+          <label>{this.props.document.alias}</label>
+          <br/>status:<br/>
+          <br/>led: <label>{this.props.document.status.led}</label>
+          <br/>pushButton: <label>{this.props.document.status.pushButton}</label>
         </label>
-        <input type="submit" value="Submit" /> 
+        <Switch api={this.props.api} id={this.props.document.id}></Switch>
       </div>
     );
   }

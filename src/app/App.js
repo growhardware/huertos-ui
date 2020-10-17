@@ -22,16 +22,12 @@ class LoginControl extends React.Component {
     };
   } 
   handleLogin() {
-    console.log('Hubo login');
     this.setState({isLoggedIn: true});
   }
   handleLogout() {
-    console.log('Hubo logout');
     this.setState({isLoggedIn: false});
   }
   render() {
-    // return this.state.isLoggedIn ? <Dashboard/> : <Login api={sailsIo} onLogin={this.handleLogin}/>;
-    //return sailsIo ? <Dashboard/> : <Login api={sailsIo} onLogin={this.handleLogin}/>;
     const isLoggedIn = this.state.isLoggedIn;
     return (
       <div>

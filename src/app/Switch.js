@@ -1,6 +1,6 @@
 import React from 'react'
 
-class LedSwitch extends React.Component {
+class Switch extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -40,4 +40,4 @@ class LedSwitch extends React.Component {
     }
 }
 
-export default LedSwitch;
+export default Switch;
