@@ -25,7 +25,7 @@ class Login extends React.Component {
       */
       
       if(body==='OK') {
-        console.log('Successfully logged in');
+        console.log('Successfully logged in', JWR);
         return this.props.onLogin();
       }
       else {console.log(body);}

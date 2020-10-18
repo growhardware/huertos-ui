@@ -39,7 +39,7 @@ class Device extends React.Component {
           <br/>pushButton: <label>{this.props.document.status.pushButton ? 'ON' : 'OFF'}</label>
           <br/>led: <label>{this.props.document.status.led ? 'ON' : 'OFF'}</label>
         </label>
-        <br/><Switch api={this.props.api} id={this.props.document.id}></Switch>
+        <br/><Switch api={this.props.api} id={this.props.document.id} on={this.props.document.status.led}></Switch>
       </div>
     );
   }

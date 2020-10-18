@@ -19,15 +19,13 @@ class Dashboard extends React.Component {
     };
   }
   handleSocket(msg) {
-    console.log(msg);
+    console.log('Sails was sent a message: ', msg);
     let devices = this.state.devices;
     const index = _.findIndex(devices,{id:msg.id});
-    console.log(index);
     if(msg.data.status !== undefined){
       let dev = devices[index];
       dev.status = msg.data.status;
       devices[index] = dev;
-      console.log(devices);
       this.setState({devices: devices});
     }
   }

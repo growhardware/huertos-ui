@@ -8,7 +8,7 @@ const socketIOClient = require('socket.io-client');
 const sailsIOClient = require('sails.io.js');
 
 var io = sailsIOClient(socketIOClient);
-io.sails.url = 'http://localhost:1337';
+io.sails.url = 'http://192.168.1.42:1337';
 io.sails.environment = 'development';
 
 
