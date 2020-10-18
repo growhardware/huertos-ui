@@ -1,5 +1,6 @@
 import React from 'react';
 import Switch from './Switch.js'
+import './App.css';
 
 /*
 class createDevice extends React.Component {
@@ -29,17 +30,16 @@ class Device extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="Device">
         <label>
-          kind:<br/>
-          <label>{this.props.document.kind}</label>
-          <br/>alias:<br/>
           <label>{this.props.document.alias}</label>
-          <br/>status:<br/>
-          <br/>led: <label>{this.props.document.status.led}</label>
-          <br/>pushButton: <label>{this.props.document.status.pushButton}</label>
+          <label>{' ('+this.props.document.kind+')'}</label>
+          <br/>
+          <br/>status:
+          <br/>pushButton: <label>{this.props.document.status.pushButton ? 'ON' : 'OFF'}</label>
+          <br/>led: <label>{this.props.document.status.led ? 'ON' : 'OFF'}</label>
         </label>
-        <Switch api={this.props.api} id={this.props.document.id}></Switch>
+        <br/><Switch api={this.props.api} id={this.props.document.id}></Switch>
       </div>
     );
   }

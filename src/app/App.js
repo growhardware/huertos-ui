@@ -8,7 +8,7 @@ const socketIOClient = require('socket.io-client');
 const sailsIOClient = require('sails.io.js');
 
 var io = sailsIOClient(socketIOClient);
-io.sails.url = 'http://192.168.1.47:1337';
+io.sails.url = 'http://localhost:1337';
 io.sails.environment = 'development';
 
 
@@ -18,7 +18,7 @@ class LoginControl extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: props.api.socket.sId
     };
   } 
   handleLogin() {
@@ -31,9 +31,9 @@ class LoginControl extends React.Component {
     const isLoggedIn = this.state.isLoggedIn;
     return (
       <div>
-        <Dashboard api={this.props.io} isLoggedIn={isLoggedIn}/>
+        {isLoggedIn ? <Dashboard api={this.props.api}/> : <h4>Login to access your dashboard.</h4>}
         <br/>
-        <Login api={this.props.io} isLoggedIn={isLoggedIn} onLogout={this.handleLogout} onLogin={this.handleLogin}/>
+        <Login api={this.props.api} isLoggedIn={isLoggedIn} onLogout={this.handleLogout} onLogin={this.handleLogin}/>
       </div>
     );
   }
@@ -47,7 +47,7 @@ function App() {
         <h4>El sistema de IoT Open Source de GrowHardware</h4>
       </header>
       <div className="App-main">
-        <LoginControl io={io}/>
+        <LoginControl api={io}/>
       </div>
       <footer className="App-footer">
         Contact us:

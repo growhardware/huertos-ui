@@ -33,7 +33,7 @@ class Switch extends React.Component {
     render(){
         return (
             <div>
-                <p>Set the led:</p>
+                <label>Set the led: </label>
                 <button className={this.state.led ? "switch_on" : "switch_off"} onClick={this.handleClick}>{this.state.led ? 'Turn ON' : 'Turn OFF'}</button>
             </div>
         )
