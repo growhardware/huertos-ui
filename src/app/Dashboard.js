@@ -2,10 +2,7 @@ import React from 'react'
 import Device from './Device.js'
 var _ = require('underscore');
 
-var Devices = [
-  {id:'5f3e9f3571afb3264ecd8dbe', kind:'ioTest', alias:'La Cuca', status:{led: false, pushButton: false},settings:{}},
-  {id:'y', kind:'ioTest', alias:'Otra C', status:{led: false, pushButton: false},settings:{}},
-];
+var Devices = [{id:'', kind:'', alias:'', status:{},settings:{}},];
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -46,11 +43,12 @@ class Dashboard extends React.Component {
       <div>
         <h2>Your Dashboard:</h2>
         <h4>Devices:</h4>
-        <div><Device api={this.props.api} document={device}/></div>          
+        <ol>
+          <Device api={this.props.api} document={device}/>
+        </ol>          
       </div>
     );
   }
 }
 
 export default Dashboard;
-  
