@@ -1,8 +1,8 @@
 import React from 'react'
 import './App.css'
 // de GH:
-import Login from './Login.js'
-import Dashboard from './Dashboard.js'
+import Login from './components/Login.js'
+import Dashboard from './components/Dashboard.js'
 
 const socketIOClient = require('socket.io-client')
 const sailsIOClient = require('sails.io.js')
