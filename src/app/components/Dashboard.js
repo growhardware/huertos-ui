@@ -2,7 +2,7 @@ import React from 'react'
 import Device from './Device.js'
 var _ = require('underscore')
 
-var Devices = [
+const Devices = [
   {
     id: '5f3e9f3571afb3264ecd8dbe',
     kind: 'ioTest',

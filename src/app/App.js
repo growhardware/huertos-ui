@@ -2,14 +2,15 @@ import React from 'react'
 import './App.css'
 // de GH:
 import Login from './components/Login.js'
+import UserCreate from './components/UserCreate.js'
 import Dashboard from './components/Dashboard.js'
 
 const socketIOClient = require('socket.io-client')
 const sailsIOClient = require('sails.io.js')
 
 var io = sailsIOClient(socketIOClient)
-//io.sails.url = 'http://localhost:1337'
-io.sails.url = 'http://3.137.147.183'
+io.sails.url = 'http://localhost:1337'
+//io.sails.url = 'http://3.137.147.183'
 io.sails.environment = 'development'
 
 class LoginControl extends React.Component {
@@ -38,6 +39,13 @@ class LoginControl extends React.Component {
         )}
         <br />
         <Login
+          api={this.props.api}
+          isLoggedIn={isLoggedIn}
+          onLogout={this.handleLogout}
+          onLogin={this.handleLogin}
+        />
+        <br />
+        <UserCreate
           api={this.props.api}
           isLoggedIn={isLoggedIn}
           onLogout={this.handleLogout}
