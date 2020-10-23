@@ -59,7 +59,11 @@ class Dashboard extends React.Component {
         <h2>Your Dashboard:</h2>
         <h4>Devices:</h4>
         <div>
-          <Device api={this.props.api} document={device} />
+          {device ? (
+            <Device api={this.props.api} document={device} />
+          ) : (
+            <p>no devices</p>
+          )}
         </div>
       </div>
     )
