@@ -1,3 +1,23 @@
+module.exports = {
+    create: (api, attributes, cb) => {
+        const reqOptions = {
+            method: 'post',
+            url: '/device',
+            data: {
+                alias: attributes.alias,
+                kind: attributes.kind,
+                status: {}
+            },
+            headers: {}
+        }
+        api.socket.request(reqOptions, cb);
+    }
+};
+
+
+
+
+
 // import http from '../http-common'
 
 // const getAll = () => {

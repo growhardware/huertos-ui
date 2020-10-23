@@ -2,31 +2,12 @@ import React from 'react'
 import Switch from './Switch.js'
 import '../App.css'
 
-/*
-class createDevice extends React.Component {
-  render() {
-    return (
-      <div>
-        <form>
-          <label>
-            What kind of device?<br/>
-            <input type="text" value={this.state.kind} onChange={(e) => this.setState({kind: e.target.value})} />
-
-         </label>
-        </form>
-      </div>
-    );
-  }
-} 
-*/
-
 class Device extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       settings: {},
     }
-    // this.handleSettingsChange = this.handleSettingsChange.bind(this);
   }
   render() {
     return (
@@ -48,10 +29,11 @@ class Device extends React.Component {
           api={this.props.api}
           id={this.props.document.id}
           on={this.props.document.status.led}
-        ></Switch>
+          name={'led'}
+        />
       </div>
     )
   }
 }
 
-export default Device
+export default Device;

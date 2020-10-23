@@ -1,4 +1,5 @@
 import React from 'react';
+import SessionService from '../services/SessionService';
 
 class Login extends React.Component {
     constructor(props){
@@ -10,57 +11,35 @@ class Login extends React.Component {
       this.handleEmailChange = this.handleEmailChange.bind(this);
       this.handlePasswordChange = this.handlePasswordChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.handleResponse = this.handleResponse.bind(this);
+      this.handleLoginResponse = this.handleLoginResponse.bind(this);
+      this.handleLogoutResponse = this.handleLogoutResponse.bind(this);
       this.handleLogout = this.handleLogout.bind(this);
     }
     handleEmailChange(event) {this.setState({emailAddress: event.target.value});}
     
     handlePasswordChange(event) {this.setState({password: event.target.value});}
 
-    handleResponse(body, JWR) {
-      /*
-      console.log('Sails responded with: ', body);
-      console.log('with headers: ', JWR.headers);
-      console.log('and with status code: ', JWR.statusCode);
-      */
-      
+    handleLoginResponse(body, JWR) {
       if(body==='OK') {
         console.log('Successfully logged in', JWR);
         return this.props.onLogin();
       }
       else {console.log(body);}
-    
+    }
+    handleLogoutResponse(body, JWR) {
+      if(body==='OK') {
+        console.log('Successfully logged out', JWR);
+        return this.props.onLogout();
+      }
+      else {console.log(body);}
     }
     handleSubmit(event) {
-      const loginReqOptions = {
-        method: 'put',
-        url: '/api/v1/entrance/login',
-        data: {
-            emailAddress: this.state.emailAddress,
-            password: this.state.password,
-        },
-        headers: {
-            //_csrf: 'USER CSRF TOKEN'
-        }
-      };
-      this.props.api.socket.request(loginReqOptions, this.handleResponse);
+      const credentials = {emailAddress: this.state.emailAddress, password: this.state.password};
+      SessionService.login(this.props.api, credentials, this.handleLoginResponse);
       event.preventDefault();
     }
     handleLogout(event) {
-      const logoutReqOptions = {
-        method: 'get',
-        url: '/api/v1/account/logout',
-        headers: {
-            //_csrf: 'USER CSRF TOKEN'
-        }
-      };
-      this.props.api.socket.request(logoutReqOptions, (b) => {
-        if(b==='OK') {
-          console.log('Successfully logged out');
-          return this.props.onLogout();
-        }
-        else {console.log(b);}
-      });
+      SessionService.logout(this.props.api, this.handleLogoutResponse);
       event.preventDefault();
     }
     render() {
@@ -81,7 +60,7 @@ class Login extends React.Component {
               Password:<br/>
               <input type="password" value={this.state.password} onChange={this.handlePasswordChange} /><br/>
             </label>
-            <input type="submit" value="Submit" /> 
+            <input type="submit" value="Login" /> 
           </form>
         );
       }
