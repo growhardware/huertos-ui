@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from './Login.js'
-import UserCreate from './UserCreate.js'
+import Signup from './Signup.js'
 import Dashboard from './Dashboard.js'
 
 class LoginControl extends React.Component {
@@ -22,11 +22,12 @@ class LoginControl extends React.Component {
       const isLoggedIn = this.state.isLoggedIn
       return (
         <div>
-          {isLoggedIn ? (
+          {isLoggedIn ? 
             <Dashboard api={this.props.api} />
-          ) : (
+          : <div>
             <h4>Login to access your dashboard.</h4>
-          )}
+            <Signup api={this.props.api}/>
+          </div>}
           <br />
           <Login
             api={this.props.api}

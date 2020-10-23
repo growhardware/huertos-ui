@@ -46,7 +46,7 @@ class CreateDevice extends React.Component {
                         <br/>kind:<br/>
                         <input type="text" value={this.state.kind} onChange={(e) => this.setState({kind: e.target.value})}/>
                     </label>
-                    <input type="submit" value="Submit"/>
+                    <br/><input type="submit" value="Submit"/>
                 </form>
             : <button onClick={this.handleClick}>Create a device</button>
             }</div>
