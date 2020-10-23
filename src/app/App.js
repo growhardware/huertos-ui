@@ -1,51 +1,13 @@
-import React from 'react'
-import './App.css'
-// de GH:
-import Login from './components/Login.js'
-import Dashboard from './components/Dashboard.js'
+import React from 'react';
+import './App.css';
+import LoginControl from './components/LoginControl';
 
-const socketIOClient = require('socket.io-client')
-const sailsIOClient = require('sails.io.js')
+const socketIOClient = require('socket.io-client');
+const sailsIOClient = require('sails.io.js');
 
-var io = sailsIOClient(socketIOClient)
-io.sails.url = 'http://localhost:1337'
-io.sails.environment = 'development'
-
-class LoginControl extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleLogout = this.handleLogout.bind(this)
-    this.handleLogin = this.handleLogin.bind(this)
-    this.state = {
-      isLoggedIn: props.api.socket.sId,
-    }
-  }
-  handleLogin() {
-    this.setState({ isLoggedIn: true })
-  }
-  handleLogout() {
-    this.setState({ isLoggedIn: false })
-  }
-  render() {
-    const isLoggedIn = this.state.isLoggedIn
-    return (
-      <div>
-        {isLoggedIn ? (
-          <Dashboard api={this.props.api} />
-        ) : (
-          <h4>Login to access your dashboard.</h4>
-        )}
-        <br />
-        <Login
-          api={this.props.api}
-          isLoggedIn={isLoggedIn}
-          onLogout={this.handleLogout}
-          onLogin={this.handleLogin}
-        />
-      </div>
-    )
-  }
-}
+var io = sailsIOClient(socketIOClient);
+io.sails.url = 'http://localhost:1337';
+io.sails.environment = 'development';
 
 function App() {
   return (
@@ -61,6 +23,5 @@ function App() {
     </div>
   )
 }
-//
 
-export default App
+export default App;

@@ -26,14 +26,14 @@ class Switch extends React.Component {
             }
         };
         this.props.api.socket.request(reqOptions, this.handleResponse);
-        // Switch state.led
+        // Switch state
         const on = !this.state.on;
         this.setState({on});
     }
     render(){
         return (
             <div>
-                <label>Set the led: </label>
+                <label>Set {this.props.name}: </label>
                 <button className={this.state.on ? "switch_on" : "switch_off"} onClick={this.handleClick}>{this.state.on ? 'Turn ON' : 'Turn OFF'}</button>
             </div>
         )
