@@ -1,5 +1,6 @@
 import React from 'react'
 import Login from './Login.js'
+import UserCreate from './UserCreate.js'
 import Dashboard from './Dashboard.js'
 
 class LoginControl extends React.Component {
@@ -39,3 +40,11 @@ class LoginControl extends React.Component {
   }
 
   export default LoginControl;
+
+  /*<UserCreate
+          api={this.props.api}
+          isLoggedIn={isLoggedIn}
+          onLogout={this.handleLogout}
+          onLogin={this.handleLogin}
+        />
+        */

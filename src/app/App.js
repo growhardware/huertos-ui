@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
 import LoginControl from './components/LoginControl';
+import './App.css'
 
 const socketIOClient = require('socket.io-client');
 const sailsIOClient = require('sails.io.js');
