@@ -52,6 +52,7 @@
 .Device {
   background-color: #00a151;
   padding: 14px;
+  margin-block: 20px;
 }
 
 @keyframes App-logo-spin {
