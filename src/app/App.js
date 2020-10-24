@@ -1,13 +1,13 @@
-import React from 'react';
-import LoginControl from './components/LoginControl';
+import React from 'react'
+import LoginControl from './components/LoginControl'
 import './App.css'
 
-const socketIOClient = require('socket.io-client');
-const sailsIOClient = require('sails.io.js');
+const socketIOClient = require('socket.io-client')
+const sailsIOClient = require('sails.io.js')
 
-var io = sailsIOClient(socketIOClient);
-io.sails.url = 'http://localhost:1337';
-io.sails.environment = 'development';
+var io = sailsIOClient(socketIOClient)
+io.sails.url = 'http://3.137.147.183'
+io.sails.environment = 'development'
 
 function App() {
   return (
@@ -24,4 +24,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
