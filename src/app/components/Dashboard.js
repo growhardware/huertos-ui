@@ -39,16 +39,25 @@ class Dashboard extends React.Component {
     this.getDevices()
   }
   render() {
-    const device = this.state.devices[0]
+    const devices = this.state.devices
+    const renderDevices = devices.map((dev) => (
+      <section key={dev.id}>
+        <Device
+          api={this.props.api}
+          document={dev}
+          onCreated={this.getDevices}
+        />
+      </section>
+    ))
     return (
       <div>
         <h2>Your Dashboard:</h2>
         <h4>Devices:</h4>
-        <div>
-          {device ? (
-            <div>
-              <Device api={this.props.api} document={device} />
-            </div>
+
+        <CreateDevice api={this.props.api} onCreated={this.getDevices} />
+        <div className="Devices">
+          {devices.length > 0 ? (
+            <span>{renderDevices}</span>
           ) : (
             <p>No devices</p>
           )}

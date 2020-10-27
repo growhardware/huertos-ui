@@ -49,9 +49,20 @@
   color: #61dafb;
 }
 
+.Devices {
+  background-color: #7ba100;
+  padding: 14px;
+  margin-block: 5px;
+  float: left;
+  min-width: 100vh;
+}
+
 .Device {
   background-color: #00a151;
   padding: 14px;
+  margin: 20px;
+  max-width: 25vh;
+  float: left;
 }
 
 @keyframes App-logo-spin {
@@ -64,8 +75,15 @@
 }
 
 .switch_on {
-  background-color: rgb(0, 212, 0);
+  background-color: greenyellow;
 }
 .switch_off {
   background-color: red;
+}
+
+.digital-flag_on {
+  color: greenyellow;
+}
+.digital-flag_off {
+  color: red;
 }
