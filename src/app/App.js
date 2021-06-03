@@ -1,15 +1,16 @@
-import React from 'react'
-import LoginControl from './components/LoginControl'
-import './App.css'
+import React from 'react';
+import LoginControl from './components/LoginControl';
+import './App.css';
 
-const socketIOClient = require('socket.io-client')
-const sailsIOClient = require('sails.io.js')
+const socketIOClient = require('socket.io-client');
+const sailsIOClient = require('sails.io.js');
 
-var io = sailsIOClient(socketIOClient)
+var io = sailsIOClient(socketIOClient);
 //io.sails.url = 'https://3.137.147.183:80'
-io.sails.url = 'http://3.137.147.183:80'
+//io.sails.url = 'http://3.137.147.183:80'
+io.sails.url = 'http://ec2-18-188-86-138.us-east-2.compute.amazonaws.com:80';
 //io.sails.url = 'https://3.137.147.183:443'
-io.sails.environment = 'development'
+io.sails.environment = 'development';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
       </div>
       <footer className="App-footer">Contact us:</footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
