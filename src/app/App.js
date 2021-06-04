@@ -8,7 +8,9 @@ const sailsIOClient = require('sails.io.js');
 var io = sailsIOClient(socketIOClient);
 //io.sails.url = 'https://3.137.147.183:80'
 //io.sails.url = 'http://3.137.147.183:80'
-io.sails.url = 'http://ec2-18-188-86-138.us-east-2.compute.amazonaws.com:80';
+//io.sails.url = 'http://ec2-18-188-86-138.us-east-2.compute.amazonaws.com:80';
+io.sails.url = 'http://127.0.0.1:80';
+
 //io.sails.url = 'https://3.137.147.183:443'
 io.sails.environment = 'development';
 
