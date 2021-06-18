@@ -11,6 +11,7 @@ class CreateDevice extends React.Component {
             creating: false,
             alias: '',
             kind: '',
+            port: '',
         }
     }
     handleClick(){
@@ -30,6 +31,7 @@ class CreateDevice extends React.Component {
         const attributes = {
             alias: this.state.alias,
             kind: this.state.kind,
+            port: this.state.port,
         };
         DeviceService.create(this.props.api, attributes, this.handleResponse);
         event.preventDefault();
@@ -45,6 +47,8 @@ class CreateDevice extends React.Component {
                         <input type="text" value={this.state.value} onChange={(e) => this.setState({alias: e.target.value})}/>
                         <br/>kind:<br/>
                         <input type="text" value={this.state.kind} onChange={(e) => this.setState({kind: e.target.value})}/>
+                        <br/>port:<br/>
+                        <input type="text" value={this.state.port} onChange={(e) => this.setState({port: e.target.value})}/>
                     </label>
                     <br/><input type="submit" value="Submit"/>
                 </form>

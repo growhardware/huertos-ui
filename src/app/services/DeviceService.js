@@ -6,7 +6,7 @@ module.exports = {
             data: {
                 alias: attributes.alias,
                 kind: attributes.kind,
-                status: {}
+                port: attributes.port
             },
             headers: {}
         }
