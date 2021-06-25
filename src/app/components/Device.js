@@ -10,7 +10,7 @@ class Device extends React.Component {
     }
   }
   render() {
-    const pushButton = this.props.document.status.pushButton;
+    const switchProp = this.props.document.status.switch;
     const led = this.props.document.status.led;
     return (
       <div className="Device">
@@ -21,10 +21,10 @@ class Device extends React.Component {
           <br />
           status:
           <br />
-          pushButton: 
+          switch: 
           <label
-            className={pushButton ? "digital-flag_on" : "digital-flag_off"}
-            >{pushButton ? ' ON' : ' OFF'}
+            className={switchProp ? "digital-flag_on" : "digital-flag_off"}
+            >{switchProp ? ' ON' : ' OFF'}
           </label>
           <br />
           led: 
