@@ -28,7 +28,7 @@ class Dashboard extends React.Component {
     }
   }
   getDevices() {
-    this.props.api.socket.get('/device/get-my-devices', this.handleResponse)
+    this.props.api.socket.get('/device/get', this.handleResponse)
   }
   handleResponse(msg) {
     console.log(msg)
