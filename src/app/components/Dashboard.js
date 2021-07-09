@@ -3,8 +3,6 @@ import Device from './Device.js'
 import CreateDevice from './CreateDevice'
 var _ = require('underscore')
 
-var Devices = []
-
 class Dashboard extends React.Component {
   constructor(props) {
     super(props)
@@ -13,19 +11,34 @@ class Dashboard extends React.Component {
     this.handleSocket = this.handleSocket.bind(this)
     this.state = {
       isLoggedIn: false,
-      devices: Devices,
+      devices: [],
     }
   }
   handleSocket(msg) {
     console.log('Sails was sent a message: ', msg)
-    let devices = this.state.devices
+    var devices = _.toArray(this.state.devices)
     const index = _.findIndex(devices, { id: msg.id })
+    console.log(index);
+    console.log(devices[index]);
+    
     if (msg.data.status !== undefined) {
       let dev = devices[index]
-      dev.status = msg.data.status
+      console.log(dev)
+      dev['status'] = msg.data.status
+      /* A RESOLVER:
+       Si descomentamos lo siguiente explota el front al gatillar handleSocket()
+       La prop history del device actualizado es undefined
+       No se de que lado es el problema aun.
+       API: no popula la historia en la suscripcion. 
+       UI: no estamos leyendo bien el objeto entrante.
+      */
+
+      // dev['history'] = msg.data.history
+      console.log(dev)
       devices[index] = dev
-      this.setState({ devices: devices })
     }
+    
+    this.setState({ devices: devices })
   }
   getDevices() {
     this.props.api.socket.get('/device/get', this.handleResponse)
