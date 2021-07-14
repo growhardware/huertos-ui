@@ -1,4 +1,5 @@
 import React from 'react'
+import HistoryChart from './HistoryChart.js'
 import Switch from './Switch.js'
 import '../App.css'
 
@@ -11,11 +12,12 @@ class Device extends React.Component {
     }
   }
   render() {
-    const switchProp = this.props.document.status.switch;
-    const led = this.props.document.status.led;
-    const history = this.props.document.history;
-    const switchHistory = history.filter( r => r.status.switch );
-    const ledHistory = history.filter( r => r.status.led );
+    const switchProp = this.props.document.status.switch
+    const led = this.props.document.status.led
+    const history = this.props.document.history
+    const switchHistory = history.filter( r => r.status.hasOwnProperty('switch') )
+    console.log(switchHistory)
+    const ledHistory = history.filter( r => r.status.hasOwnProperty('led') )
     return (
       <div className="Device">
         <label>
@@ -25,10 +27,11 @@ class Device extends React.Component {
           <br />
           status:
           <br />
-          switch history: 
-          <label className="timeline-graphic">
-            {JSON.stringify(switchHistory)}
-          </label>
+          switch history:
+          <HistoryChart
+            history={switchHistory}
+            tag={'switch'}
+          />
           <br />
           switch status:
           <label
@@ -37,9 +40,10 @@ class Device extends React.Component {
           </label>
           <br />
           led history: 
-          <label className="timeline-graphic">
-            {JSON.stringify(ledHistory)}
-          </label>
+          <HistoryChart
+            history={ledHistory}
+            tag={'led'}
+          />
           <br />
           led status: 
           <label
