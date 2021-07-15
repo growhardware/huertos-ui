@@ -13,7 +13,7 @@ class HistoryChart extends React.Component {
     var table = []
     for (let i = 0; i<h.length-1; i++ ){
         const status = h[i].status[key] ? 1 : 0
-        table.push({ x: h[i].createdAt, y: status } )
+        table.push( { x: h[i].createdAt, y: status } )
         table.push( { x: h[i].createdAt, y: -1*(status-1) } )
     }
     return table

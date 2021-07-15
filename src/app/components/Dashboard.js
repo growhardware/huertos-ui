@@ -18,22 +18,15 @@ class Dashboard extends React.Component {
     console.log('Sails was sent a message: ', msg)
     var devices = _.toArray(this.state.devices)
     const index = _.findIndex(devices, { id: msg.id })
-    console.log(index);
-    console.log(devices[index]);
+    console.log(index)
+    console.log('LLega msge de socket: ')
+    console.log(devices[index])
     
     if (msg.data.status !== undefined) {
       let dev = devices[index]
       console.log(dev)
       dev['status'] = msg.data.status
-      /* A RESOLVER:
-       Si descomentamos lo siguiente explota el front al gatillar handleSocket()
-       La prop history del device actualizado es undefined
-       No se de que lado es el problema aun.
-       API: no popula la historia en la suscripcion. 
-       UI: no estamos leyendo bien el objeto entrante.
-      */
-
-      // dev['history'] = msg.data.history
+      dev['history'] = msg.previous.history
       console.log(dev)
       devices[index] = dev
     }
