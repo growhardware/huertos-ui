@@ -15,7 +15,7 @@ class CreateDevice extends React.Component {
         }
     }
     handleClick(){
-        this.setState({creating: true});
+        this.setState({creating: !this.state.creating});
     }
     handleResponse(body, JWR){
         if(JWR.statusCode === 200){
@@ -40,7 +40,7 @@ class CreateDevice extends React.Component {
         const renderForm = this.state.creating;
         return (
             <div>{
-            renderForm ?
+                renderForm ?
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         <br/>alias:<br/>
@@ -52,8 +52,10 @@ class CreateDevice extends React.Component {
                     </label>
                     <br/><input type="submit" value="Submit"/>
                 </form>
-            : <button onClick={this.handleClick}>Create a device</button>
-            }</div>
+                : <label></label>
+                }
+                <button onClick={this.handleClick}>{renderForm ? 'Cancel' : 'Create a device'}</button>
+            </div>
         );
     }  
 }

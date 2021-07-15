@@ -66,8 +66,6 @@ class Dashboard extends React.Component {
       <div>
         <h2>Your Dashboard:</h2>
         <h4>Devices:</h4>
-
-        <CreateDevice api={this.props.api} onCreated={this.getDevices} />
         <div className="Devices">
           {devices.length > 0 ? (
             <span>{renderDevices}</span>
