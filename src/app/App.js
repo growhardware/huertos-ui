@@ -11,7 +11,7 @@ var io = sailsIOClient(socketIOClient);
 //io.sails.url = 'http://ec2-18-188-86-138.us-east-2.compute.amazonaws.com:1337';
 io.sails.url = 'http://localhost:1337';
 //io.sails.url = 'http://127.0.0.1:80';
-
+// Esta es la rama 
 //io.sails.url = 'https://3.137.147.183:443'
 io.sails.environment = 'development';
 
