@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom'
-import { useAuth } from '../hooks/use-auth'
+import { useAuth } from '../contexts/AppContext'
 
 export const Login = () => {
     let history = useHistory();
