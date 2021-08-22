@@ -1,0 +1,22 @@
+import React from 'react'
+import { AuthButton } from '../components/auth-button'
+import {Link } from "react-router-dom"
+
+const MainPage = () => {
+    return (
+        <div>
+            <AuthButton />
+            <ul>
+                <li>
+                <Link to="/public">Public Page</Link>
+                </li>
+                <li>
+                <Link to="/dashboard">Go to my Dashboard!</Link>
+                </li>
+            </ul>
+            <hr/>
+        </div>
+    );
+}
+  
+export default MainPage;

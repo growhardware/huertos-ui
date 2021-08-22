@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 
 import { useHistory, useLocation } from 'react-router-dom'
-import { useAuth } from '../hooks/use-auth'
+import { useAuth } from '../contexts/AppContext'
 
 export const Login = () => {
   
