@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useState } from "react";
 import { signIn, signOut } from "../services/auth"
 
 
@@ -13,12 +13,6 @@ const auth = {
     signOut(cb);
   }
 };
-
-// Hook for child components to get the auth object ...
-// ... and re-render when it changes.
-// export const useAuth = () => {
-//   return useContext(authContext);
-// };
 
 export const useProvideAuth = () => {
 
