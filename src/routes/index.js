@@ -8,10 +8,8 @@ import {Public}  from '../pages/Public'
 
 const AppRouter = ()=>(
     <Router>
+        <MainPage/>
         <Switch>
-            <Route path="/">
-                <MainPage />
-            </Route>
             <Route path="/public">
                 <Public />
             </Route>
