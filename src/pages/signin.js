@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from '../contexts/AppContext'
 import { useHistory, useLocation } from 'react-router-dom'
 
-export default function Login() {
+export default function SignIn() {
     let history = useHistory();
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };

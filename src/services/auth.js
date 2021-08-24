@@ -1,4 +1,4 @@
-import io from './socket'
+import io from './socket';
 
 export const signUp = (msg, cb) => {
     const signupReqOptions = {

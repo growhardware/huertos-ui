@@ -1,14 +1,14 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
-import MainPage from '../pages/Main'
+import Header from '../pages/header'
 import {PrivateRoute } from '../contexts/AppContext'
-import {Dashboard } from '../pages/Dashboard'
-import {Login}  from '../pages/Login'
-import {Public}  from '../pages/Public'
+import {Dashboard } from '../pages/dashboard'
+import Login from '../pages/login'
+import {Public}  from '../pages/public'
 
 const AppRouter = ()=>(
     <Router>
-        <MainPage/>
+        <Header/>
         <Switch>
             <Route path="/public">
                 <Public />

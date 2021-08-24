@@ -17,13 +17,7 @@ export const useProvideAuth = () => {
 
   const [user, setUser] = useState(null);
 
-  const credentials = {
-      // A fuego por ahora:
-      email: "dale@gol.tv",
-      password: "bolso10",
-  };
-
-  const signin = cb => {
+  const signin = (credentials, cb) => {
       return auth.signin( credentials, (body, JWR) => {
       setUser("user");
       cb(body, JWR);
