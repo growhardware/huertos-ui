@@ -1,9 +1,7 @@
 import React from 'react';
-import './App.css'
-// import { AuthButton } from './context/context'
-import { AppProvider } from './contexts/AppContext'
-import AppRouter from './routes'
-
+import './App.css';
+import { AppProvider } from './contexts/AppContext';
+import AppRouter from './routes';
 
 function App(props) {
   return (
@@ -13,4 +11,4 @@ function App(props) {
   );
 }
 
-export default App
+export default App;

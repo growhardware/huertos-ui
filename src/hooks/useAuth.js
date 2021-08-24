@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { signIn, signOut } from "../services/auth"
 
-
 const auth = {
   isAuthenticated: false,
   signin(credentials, cb) {
