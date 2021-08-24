@@ -3,7 +3,7 @@ import './App.css';
 import { AppProvider } from './contexts/AppContext';
 import AppRouter from './routes';
 
-function App(props) {
+function App() {
   return (
     <AppProvider>
       <AppRouter />
