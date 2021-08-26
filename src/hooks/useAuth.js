@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { signUp,signIn, signOut } from "../services/authService"
 
 const auth = {
   isAuthenticated: false,
@@ -9,11 +8,9 @@ const auth = {
   },
   signin(credentials, cb) {
     auth.isAuthenticated = true;
-    signIn(credentials, cb);
   },
   signout(cb) {
     auth.isAuthenticated = false;
-    signOut(cb);
   }
 };
 

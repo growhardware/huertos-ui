@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useAuth } from '../contexts/AppContext'
+import { signOut } from '../services/authService'
 
 export const AuthButton = () => {
     let history = useHistory();
@@ -14,6 +15,7 @@ export const AuthButton = () => {
         Welcome!{" "}
         <button
             onClick={() => {
+                signOut();
                 auth.signout(callback);
                 }}
         >
