@@ -1,20 +1,15 @@
 import { useState } from "react";
-import { signUp,signIn, signOut } from "../services/authService"
 
 const auth = {
   isAuthenticated: false,
   signup(credentials, cb) {
-    signUp(credentials, cb);
     auth.isAuthenticated = true;
-    console.log('.....................')
   },
   signin(credentials, cb) {
     auth.isAuthenticated = true;
-    signIn(credentials, cb);
   },
   signout(cb) {
     auth.isAuthenticated = false;
-    signOut(cb);
   }
 };
 
