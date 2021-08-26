@@ -1,8 +1,13 @@
 import { useState } from "react";
-import { signIn, signOut } from "../services/auth"
+import { signUp,signIn, signOut } from "../services/authService"
 
 const auth = {
   isAuthenticated: false,
+  signup(credentials, cb) {
+    signUp(credentials, cb);
+    auth.isAuthenticated = true;
+    console.log('.....................')
+  },
   signin(credentials, cb) {
     auth.isAuthenticated = true;
     signIn(credentials, cb);
@@ -16,6 +21,13 @@ const auth = {
 export const useProvideAuth = () => {
 
   const [user, setUser] = useState(null);
+
+  const signup = (credentials, cb) => {
+      return auth.signup( credentials, (body, JWR) => {
+      setUser("user");
+      cb(body, JWR);
+      });
+  };
 
   const signin = (credentials, cb) => {
       return auth.signin( credentials, (body, JWR) => {
@@ -33,6 +45,7 @@ export const useProvideAuth = () => {
 
   return {
       user,
+      signup,
       signin,
       signout
   };

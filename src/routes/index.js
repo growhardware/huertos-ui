@@ -4,6 +4,7 @@ import Header from '../pages/Header'
 import {PrivateRoute } from '../contexts/AppContext'
 import {Dashboard } from '../pages/Dashboard'
 import Login from '../pages/Login'
+import Signup from '../pages/Signup'
 import {Public}  from '../pages/Public'
 
 const AppRouter = ()=>(
@@ -15,6 +16,9 @@ const AppRouter = ()=>(
             </Route>
             <Route path="/login">
                 <Login />
+            </Route>
+            <Route path="/signup">
+                <Signup />
             </Route>
             <PrivateRoute path="/dashboard">
                 <Dashboard />

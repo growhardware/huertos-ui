@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from '../contexts/AppContext'
 import { useHistory, useLocation } from 'react-router-dom'
+import { signIn } from '../services/authService';
 
 export default function Login() {
     let history = useHistory();
@@ -20,6 +21,7 @@ export default function Login() {
         history.replace(from);
     };
     const onSubmit = data => {
+        signIn(data);
         console.log(data);
         auth.signin(data, callback);
     }
@@ -28,11 +30,13 @@ export default function Login() {
         /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
         <form onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
-        <input type="email" defaultValue="" {...register("email", { required: true })} />
+        <label htmlFor="email">Email</label>
+        <input id="email"type="email" defaultValue="" {...register("email", { required: true })} />
         {errors.exampleRequired && <span>This field is required</span>}
 
         {/* include validation with required or other standard HTML validation rules */}
-        <input type="password"{...register("password", { required: true })} />
+        <label htmlFor="password">Password</label>
+        <input id="password" type="password"{...register("password", { required: true })} />
         {/* errors will return when field validation fails  */}
         {errors.exampleRequired && <span>This field is required</span>}
         

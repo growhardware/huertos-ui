@@ -21,9 +21,14 @@ export const AuthButton = () => {
         </button>
         </p>
     ) : (
+        <div>
         <p>You are not logged in.
             <button onClick={() => history.push("/login")}>Login</button>
         </p>
+        <p>or Signup
+            <button onClick={() => history.push("/signup")}>Sign up</button>
+        </p>
+        </div>
     );
 }
   

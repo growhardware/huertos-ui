@@ -1,6 +1,7 @@
 import io from './socket';
 
-export const signUp = (msg, cb) => {
+export const signUp = async (msg, cb) => {
+    console.log('MENSANJE ', msg)
     const signupReqOptions = {
         method: 'post',
         url: '/api/v1/entrance/signup',
@@ -12,7 +13,9 @@ export const signUp = (msg, cb) => {
         },
         headers: {},
       }
-      io.socket.request(signupReqOptions, cb);
+    let res = await io.socket.request(signupReqOptions, cb);
+    console.log('el res',res);
+    return res;
 }
 export const signOut = (cb) => {
     const logoutReqOptions = {
