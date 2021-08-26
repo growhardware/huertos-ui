@@ -11,8 +11,13 @@ export default function Signin() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const auth = useAuth();
     const callback = (body, JWR) => {
-        console.log('signup body', body)
-        console.log('signup JWR', JWR)
+        console.log('Signup callback launched');
+        if(body==='OK') {
+            console.log('Successfully signed up', JWR);
+        }
+        else{
+            console.log('We cannot sign up', JWR);
+        }
         history.replace(from);
     };
     const onSubmit = data => {
