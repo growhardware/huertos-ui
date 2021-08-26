@@ -7,8 +7,8 @@ export const signUp = async (msg, cb) => {
         data: {
           emailAddress: msg.emailAddress,
           password: msg.password,
-          rememberMe: true,
-          fullName: 'fullname',
+          rememberMe: msg.rememberMe,
+          fullName: msg.fullName,
         },
         headers: {},
       }
