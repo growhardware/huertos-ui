@@ -1,20 +1,7 @@
 import React, { useContext, createContext} from "react";
-import { signIn, signOut } from "../services/auth"
+import { signIn, signOut } from "../services/authService"
 import { useProvideAuth} from '../hooks/useAuth'
 import { Route, Redirect } from 'react-router-dom'
-
-
-const auth = {
-  isAuthenticated: false,
-  signin(credentials, cb) {
-    auth.isAuthenticated = true;
-    signIn(credentials, cb);
-  },
-  signout(cb) {
-    auth.isAuthenticated = false;
-    signOut(cb);
-  }
-};
 
 const authContext = createContext();
 

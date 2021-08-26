@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from '../contexts/AppContext'
 import { useHistory, useLocation } from 'react-router-dom'
+import { signIn } from '../services/authService';
 
 export default function Login() {
     let history = useHistory();
@@ -20,6 +21,7 @@ export default function Login() {
         history.replace(from);
     };
     const onSubmit = data => {
+        signIn(data);
         console.log(data);
         auth.signin(data, callback);
     }

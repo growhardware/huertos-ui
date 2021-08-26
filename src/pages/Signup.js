@@ -3,6 +3,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { useAuth } from '../contexts/AppContext'
 import { useHistory, useLocation } from 'react-router-dom'
+import { signUp } from '../services/authService'
 
 export default function Signin() {
     let history = useHistory();
@@ -21,6 +22,7 @@ export default function Signin() {
         history.replace(from);
     };
     const onSubmit = data => {
+        signUp(data)
         console.log(data);
         auth.signup(data, callback);
     }

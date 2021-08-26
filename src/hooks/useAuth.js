@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signUp, signIn, signOut } from "../services/auth"
+import { signUp,signIn, signOut } from "../services/authService"
 
 const auth = {
   isAuthenticated: false,
