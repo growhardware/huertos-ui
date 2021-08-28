@@ -1,4 +1,5 @@
 import React, { useContext, createContext} from "react";
+import { useState } from "react";
 import { useProvideAuth} from '../hooks/useAuth'
 import { Route, Redirect } from 'react-router-dom'
 
@@ -14,6 +15,7 @@ export const useAuth = () => {
 // ... available to any child component that calls useAuth().
 export const AppProvider = ({ children }) => {
   const auth = useProvideAuth();
+
   return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
 
@@ -22,11 +24,12 @@ export const AppProvider = ({ children }) => {
 // screen if you're not yet authenticated.
 export const PrivateRoute = ({ children, ...rest }) => {
   let auth = useAuth();
+
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        auth.user ? (
+      auth.user ? (
           children
         ) : (
           <Redirect
