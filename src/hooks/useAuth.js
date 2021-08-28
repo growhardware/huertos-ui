@@ -27,16 +27,24 @@ export const useProvideAuth = () => {
 
   const signup = (credentials, cb) => {
     return auth.signup( credentials, (body, JWR) => {
-      body==='OK' ? localStorage.setItem('user', credentials.emailAddress) : localStorage.setItem('user', null)
-      setUser("user");
+      if(body==='OK'){
+        localStorage.setItem('user', credentials.emailAddress);
+        setUser("user");
+      } else {
+        localStorage.setItem('user', null);
+      }
       cb(body, JWR);
     });
   };
   
   const signin = (credentials, cb) => {
     return auth.signin( credentials, (body, JWR) => {
-      body==='OK' ? localStorage.setItem('user', credentials.email) : localStorage.setItem('user', null)
-      setUser("user");
+      if(body==='OK'){
+        localStorage.setItem('user', credentials.email);
+        setUser("user");
+      } else {
+        localStorage.setItem('user', null);
+      }
       cb(body, JWR);
       });
   };
