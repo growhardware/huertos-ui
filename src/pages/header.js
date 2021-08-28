@@ -14,7 +14,6 @@ const MainPage = () => {
                 <Link to="/dashboard">Go to my Dashboard!</Link>
                 </li>
             </ul>
-            <hr/>
         </div>
     );
 }

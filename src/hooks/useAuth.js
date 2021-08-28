@@ -20,10 +20,6 @@ const auth = {
 export const useProvideAuth = () => {
 
   const [user, setUser] = useState(null);
-  
-  //const [email, setEmail] = useState(null);
-  
-  const email = localStorage.getItem('user');
 
   const signup = (credentials, cb) => {
     return auth.signup( credentials, (body, JWR) => {
@@ -50,7 +46,6 @@ export const useProvideAuth = () => {
   };
 
   return {
-      email,
       user,
       signup,
       signin,
