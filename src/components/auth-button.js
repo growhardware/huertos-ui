@@ -7,10 +7,11 @@ export const AuthButton = () => {
     let history = useHistory();
     let auth = useAuth();
     const callback = (body, JWR) => {
-        history.push("/public");
+        // TODO: change this hard-code value for an environment value
+        window.location.href = "http://localhost:3000";
         console.log('Successfully logged out', body, JWR)
     }
-    return auth.user ? (
+    return localStorage.getItem('user') ? (
         <p>
         Welcome!{" "}
         <button

@@ -20,16 +20,22 @@ const auth = {
 export const useProvideAuth = () => {
 
   const [user, setUser] = useState(null);
+  
+  //const [email, setEmail] = useState(null);
+  
+  const email = localStorage.getItem('user');
 
   const signup = (credentials, cb) => {
     return auth.signup( credentials, (body, JWR) => {
-    setUser("user");
-    cb(body, JWR);
+      body==='OK' ? localStorage.setItem('user', credentials.emailAddress) : localStorage.setItem('user', null)
+      setUser("user");
+      cb(body, JWR);
     });
   };
-
+  
   const signin = (credentials, cb) => {
-      return auth.signin( credentials, (body, JWR) => {
+    return auth.signin( credentials, (body, JWR) => {
+      body==='OK' ? localStorage.setItem('user', credentials.email) : localStorage.setItem('user', null)
       setUser("user");
       cb(body, JWR);
       });
@@ -37,12 +43,14 @@ export const useProvideAuth = () => {
 
   const signout = cb => {
       return auth.signout(() => {
+      localStorage.removeItem('user');// .setItem('user', null);
       setUser(null);
       cb();
       });
   };
 
   return {
+      email,
       user,
       signup,
       signin,
