@@ -2,8 +2,23 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from '../contexts/AppContext'
 import { useHistory, useLocation } from 'react-router-dom'
- 
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: '25ch',
+      },
+    },
+  }));
+
 export default function Login() {
+    const classes = useStyles();
+
     let history = useHistory();
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
@@ -25,20 +40,21 @@ export default function Login() {
     }
 
     return (
-        /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-        <form onSubmit={handleSubmit(onSubmit)}>
-        {/* register your input into the hook by invoking the "register" function */}
-        <label htmlFor="email">Email</label>
-        <input id="email"type="email" defaultValue="" {...register("email", { required: true })} />
-        {errors.exampleRequired && <span>This field is required</span>}
-
-        {/* include validation with required or other standard HTML validation rules */}
-        <label htmlFor="password">Password</label>
-        <input id="password" type="password"{...register("password", { required: true })} />
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <span>This field is required</span>}
+        <form onSubmit={handleSubmit(onSubmit)} className={classes.root} noValidate autoComplete="off">
         
-        <input type="submit" />
+         <TextField required id="email" label="Email" type="email" defaultValue="" {...register("email", { required: true })}/>
+         {errors.exampleRequired && <span>This field is required</span>}
+        <TextField
+          id="password"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          {...register("password", { required: true })}
+        />
+        {errors.exampleRequired && <span>This field is required</span>}
+        <Button type="submit" variant="contained">Login</Button>
+        
         </form>
+        
     );
 }
