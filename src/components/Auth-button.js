@@ -6,10 +6,9 @@ import { signOut } from '../services/authService'
 export const AuthButton = () => {
     let history = useHistory();
     let auth = useAuth();
-    const callback = (body, JWR) => {
-        // TODO: change this hard-code value for an environment value
-        window.location.href = "http://localhost:3000";
-        console.log('Successfully logged out', body, JWR)
+    const callback = (JWR) => {
+        history.push("/public");
+        console.log('Successfully logged out', JWR);
     }
     return localStorage.getItem('user') ? (
         <p>

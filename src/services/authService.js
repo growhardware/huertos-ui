@@ -18,8 +18,6 @@ export const signOut = (cb) => {
     const logoutReqOptions = {
         method: 'get',
         url: '/api/v1/account/logout',
-        headers: {
-        }
     };
     io.socket.request(logoutReqOptions, cb);
 }

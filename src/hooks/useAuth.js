@@ -51,9 +51,9 @@ export const useProvideAuth = () => {
 
   const signout = cb => {
       return auth.signout(() => {
-      localStorage.removeItem('user');// .setItem('user', null);
-      setUser(null);
-      cb();
+        localStorage.removeItem('user');// .setItem('user', null);
+        setUser(null);
+        cb();
       });
   };
 

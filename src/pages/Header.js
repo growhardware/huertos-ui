@@ -1,5 +1,5 @@
 import React from 'react'
-import { AuthButton } from '../components/auth-button'
+import { AuthButton } from '../components/Auth-button'
 import {Link } from "react-router-dom"
 
 const MainPage = () => {
