@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../contexts/AppContext';
 import { signOut } from '../services/authService';
-import Button from '@material-ui/core/Button';
+import { Button } from '@material-ui/core';
 
 export const AuthButton = () => {
 
@@ -13,16 +13,15 @@ export const AuthButton = () => {
         console.log('Successfully logged out', JWR);
     }
     return localStorage.getItem('user') ? (
-        <p>
-        Welcome!{" "}
-        <Button  onClick={() => {
+        <div>
+            <p>Welcome!{" "}</p>
+            <Button  onClick={() => {
                 signOut();
                 auth.signout(callback);
                 }} color="secondary">
-            Sign out
-        </Button>
-
-        </p>
+                Sign out
+            </Button>
+        </div>
         
     ) : (
         <div>
@@ -31,7 +30,7 @@ export const AuthButton = () => {
                 Login
             </Button>
         </p>
-        <p>Or signup to get a user
+        <p>Or signup to get a user: 
             <Button  onClick={() => history.push("/signup")} color="primary">
             Sign up
             </Button>
