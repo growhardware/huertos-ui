@@ -9,7 +9,7 @@ export const AuthButton = () => {
     let history = useHistory();
     let auth = useAuth();
     const callback = (JWR) => {
-        history.push("/public");
+        history.push("/");
         console.log('Successfully logged out', JWR);
     }
     return localStorage.getItem('user') ? (

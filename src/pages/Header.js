@@ -4,11 +4,11 @@ import {Link } from "react-router-dom"
 
 const MainPage = () => {
     return (
-        <div className="App-header">
+        <div className="Header">
             <AuthButton />
             <ul>
                 <li>
-                <Link to="/public">Public Page</Link>
+                <Link to="/">Public Page</Link>
                 </li>
                 <li>
                 <Link to="/dashboard">Go to my Dashboard!</Link>

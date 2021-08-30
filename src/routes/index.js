@@ -11,7 +11,7 @@ const AppRouter = ()=>(
     <Router>
         <Header/>
         <Switch>
-            <Route path="/public">
+            <Route exact path="/">
                 <Public />
             </Route>
             <Route path="/login">
