@@ -38,7 +38,7 @@ export default function Signin() {
             console.log('Successfully signed up', JWR);
         }
         else{
-            console.log('We cannot sign up', JWR);
+            console.log('We can not sign up', JWR);
         }
         history.replace(from);
     };
