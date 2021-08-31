@@ -27,7 +27,7 @@ export const AuthButton = () => {
         <div>
         <p>You are not logged in.
             <Button  onClick={() => history.push("/login")} color="primary">
-                Login
+                Log in
             </Button>
         </p>
         <p>Or signup to get a user: 

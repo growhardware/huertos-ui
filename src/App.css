@@ -46,6 +46,11 @@
   color: #61dafb;
 }
 
+.Form {
+  display: flex;
+  justify-content: center;
+}
+
 .Devices {
   background-color: #7ba100;
   padding: 14px;

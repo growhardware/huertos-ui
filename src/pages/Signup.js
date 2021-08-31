@@ -48,30 +48,33 @@ export default function Signin() {
     }
 
     return (
-        
+      <div className="Form">
         <form onSubmit={handleSubmit(onSubmit)} className={classes.root} noValidate autoComplete="off">
-        <TextField required id="fullName" label="Full Name" type="text" {...register("fullName", { required: true })}/>      
-        {errors.exampleRequired && <span>This field is required</span>}
-        <TextField required id="email" label="Email" type="email" defaultValue="" {...register("emailAddress", { required: true })}/>
-        {errors.exampleRequired && <span>This field is required</span>}
-        <TextField
-        id="password"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        {...register("password", { required: true })}
-        />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <Checkbox
-            // color="primary"
-            // checked={checked}
-            // onChange={handleChange}
-            // inputProps={{ 'aria-label': 'primary checkbox' }}
-            id="RememberMe"
-            //{...register("rememberMe", { required: true })}
-        />
-        <Button type="submit" variant="contained">Login</Button>
-
+          <TextField
+            required id="fullName"
+            label="Full Name"
+            type="text"
+            {...register("fullName", { required: true })}
+          /><br />
+          {errors.exampleRequired && <span>This field is required</span>}
+          <TextField
+            required id="email"
+            label="Email"
+            type="email"
+            defaultValue=""
+            {...register("emailAddress", { required: true })}
+          /><br />
+          {errors.exampleRequired && <span>This field is required</span>}
+          <TextField
+            id="password"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            {...register("password", { required: true })}
+          /><br />
+          {errors.exampleRequired && <span>This field is required</span>}
+          <Button type="submit" variant="contained">Sign Up</Button>
         </form>
+      </div>
     );
 }
