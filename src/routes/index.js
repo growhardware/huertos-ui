@@ -11,9 +11,9 @@ const AppRouter = ()=>(
     <Router>
         <Header/>
         <Switch>
-            <Route exact path="/">
+            {/* <Route exact path="/">
                 <Public />
-            </Route>
+            </Route> */}
             <Route path="/login">
                 <Login />
             </Route>
