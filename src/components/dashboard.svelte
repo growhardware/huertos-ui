@@ -13,8 +13,7 @@ import AddDeviceModal from './AddDeviceModal.svelte';
         
         if (msg.data.status !== undefined) {
             let dev = devices[index]
-            dev.settings.led = msg.data.status.status.led
-            dev['status'] = msg.data.status.status
+            dev['status'] = msg.data.status
             dev['history'] = msg.previous.history
             devices[index] = dev
         }
@@ -37,13 +36,12 @@ import AddDeviceModal from './AddDeviceModal.svelte';
     
     $: deviceList = state.devices
 
-    let searchTerm = "";
+    let searchTerm = "my device";
 </script>
 
 <div>
     <div class="flex justify-center w-full">
         <input class="shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" bind:value={searchTerm} placeholder="Search" />
-        {searchTerm}
         <AddDeviceModal api={api}/>
     </div>
     <div class="flex justify-center w-full">
