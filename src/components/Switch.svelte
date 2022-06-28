@@ -51,10 +51,12 @@
 	// 	const res = await fetch(`/tutorial/api/album`);
 	// 	photos = await res.json();
 	// });
+    const switch_off = "bg-yellow-400 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+    const switch_on = "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+
 </script>
 
 <div>
-    <!-- svelte-ignore a11y-label-has-associated-control -->
-    <label>Set {name}: </label>
-    <button type="button" on:click={handleClick} class={on ? "switch_on" : "switch_off"}>{on ? 'Turn ON' : 'Turn OFF'}</button>
+    Set {name}
+    <button on:click={handleClick} class={on? switch_on : switch_off}>{on ? 'Turn ON' : 'Turn OFF'}</button>
 </div>
