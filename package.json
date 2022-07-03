@@ -26,8 +26,10 @@
   },
   "type": "module",
   "dependencies": {
+    "frappe-gantt": "^0.6.1",
     "sails.io.js": "^1.2.1",
     "socket.io-client": "^2.3.0",
+    "svelte-gantt": "^4.0.7-beta",
     "underscore": "^1.13.3"
   }
 }
