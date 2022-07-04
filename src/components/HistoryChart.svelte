@@ -1,11 +1,15 @@
 
 <script>
-    // TODO ------>
-
+    import { SvelteGantt, SvelteGanttTable } from 'svelte-gantt'
+    
     export let history;
-    export let tag;
+
+    $: switchHistory = history.filter( r => r.status.hasOwnProperty('switch') )
+    $: ledHistory = history.filter( r => r.status.hasOwnProperty('led') )
 </script>
 
 <div>
-    the HistoryChartnnel {history}, tag {tag}
+    led: {ledHistory}
+    <br/>
+    switch: {switchHistory}
 </div>

@@ -2,7 +2,7 @@
     export let api;
     export let id;
     export let on;
-    export let name;
+    export let key;
     
     let state = {};
 
@@ -13,6 +13,8 @@
     }
     
     const handleClick = () => {
+        const settings = {}
+        settings[key] = on
         const reqOptions = {
             method: 'patch',
             // url: '/device/' + this.props.id,
@@ -22,7 +24,7 @@
                 id: id,
                 // settings: {led: this.state.on}
                 // settings: {led: state.on}
-                settings: {led: on}
+                settings: settings
             },
             headers: {
             }
@@ -57,6 +59,6 @@
 </script>
 
 <div>
-    Set {name}
+    Set {key}
     <button on:click={handleClick} class={on? switch_on : switch_off}>{on ? 'Turn ON' : 'Turn OFF'}</button>
 </div>
