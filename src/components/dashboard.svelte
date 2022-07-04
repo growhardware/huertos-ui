@@ -1,7 +1,6 @@
 <script>
 import { api } from "../stores/api";
 import Device from './Device.svelte';
-import _ from 'underscore';
 import AddDeviceModal from './AddDeviceModal.svelte';
 // import CreateDevice from '../components/CreateDevice.svelte'
 
@@ -17,8 +16,17 @@ import AddDeviceModal from './AddDeviceModal.svelte';
         const index = devices.findIndex((d) => {if(d.id==msg.id){ return true; }})
         let device = devices[index]    
         if (msg.data.status !== undefined) {
+            const prevStatus = device.status
             device['status'] = msg.data.status
-            const event = {'createdAt':msg.updatedAt, 'status':msg.data.status}
+            // For update 'history' property:
+            const statusNews = {}
+            const msgProps = Object.getOwnPropertyNames(msg.data.status)
+            msgProps.forEach( p => {
+                if (msg.data.status[p] !== prevStatus[p]){
+                    statusNews[p] = msg.data.status[p]
+                }
+            });
+            const event = {'createdAt':msg.updatedAt, 'status':statusNews}
             device.history.push(event)
             devices[index] = device
         }
