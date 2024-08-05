@@ -19,8 +19,7 @@ import { signOut } from '../services/authService';
 import { useAuth } from '../contexts/AppContext';
 import { useHistory } from 'react-router-dom';
 
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
   },
@@ -92,7 +91,7 @@ export default function PrimarySearchAppBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event) => {
+  const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -108,17 +107,17 @@ export default function PrimarySearchAppBar() {
   let auth = useAuth();
   let history = useHistory();
   const handleLogout = () => {
-    const callback = (JWR) => {
-        history.push("/");
-        console.log('Successfully logged out', JWR);
-    }
+    const callback = JWR => {
+      history.push('/');
+      console.log('Successfully logged out', JWR);
+    };
     signOut();
-    auth.signout(callback)
+    auth.signout(callback);
     // setAnchorEl(null);
     // handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event) => {
+  const handleMobileMenuOpen = event => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
@@ -183,18 +182,13 @@ export default function PrimarySearchAppBar() {
   return (
     <div className={classes.grow}>
       <AppBar>
-      {/* <AppBar position="static"> */}
+        {/* <AppBar position="static"> */}
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="open drawer">
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            Dashboard
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
