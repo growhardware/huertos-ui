@@ -10,7 +10,7 @@ import { Public } from '../pages/Public';
 
 const AppRouter = () => (
   <Router>
-    <Header />
+    {/* <Header /> */}
     <Switch>
       {/* <Route exact path="/">
                 <Public />

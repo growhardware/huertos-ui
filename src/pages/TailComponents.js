@@ -1,45 +1,51 @@
 import React from 'react';
-// import DynamicWrapper from '../components/dev/DynamicWrapper.js';
+import { useState } from 'react';
+import Modal from '../components/dev/Modal';
+import componentMapping from '../components/dev/componentMapping';
 const style = {
   'text-align': 'center',
 };
 
-export function c1(props) {
-  return <div>c1 {props.text}</div>;
-}
-
-export function c2(props) {
-  return <div>c2 {props.text}</div>;
-}
-
-const componentMapping = [
-  {
-    key: '1',
-    c: c1,
-    componentName: 'c1',
-    props: { text: 'bar' },
-  },
-  {
-    key: '2',
-    c: c2,
-    // c: () => {
-    //   return c2;
-    // },
-    componentName: 'c2',
-    props: { text: 'bar1' },
-  },
-];
+const verStyle = {
+  cursor: 'pointer',
+};
 
 export const TailComponents = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [componentToShow, setComponentToShow] = useState('');
+  console.log('tcshowModal ', showModal);
   return (
     <>
       <div style={style}>
         <h3>Tail Components Page</h3>
-        {componentMapping.map(({ c, componentName, props }) => {
-          // console.log(componentMapping[componentName]);
-          return <li>{React.createElement(c, props)}</li>;
-          //   return <Component />;
-          // return ({React.createElement(cw, { text: 'hola' })});
+        {componentMapping.map(({ key, c, componentName, props }) => {
+          const comp = c;
+          return (
+            <>
+              {' '}
+              <li key={key}>
+                {componentName}
+                <span
+                  style={verStyle}
+                  onClick={() => {
+                    setShowModal(!showModal);
+                    setComponentToShow(componentName);
+                  }}
+                >
+                  {' '}
+                  ver
+                </span>
+              </li>
+              {/* {React.createElement(c, { text: 'hola' })} */}
+              <div
+                onClick={() => {
+                  setShowModal(false);
+                }}
+              >
+                <Modal showModal={showModal} component={componentToShow}></Modal>
+              </div>
+            </>
+          );
         })}
       </div>
     </>
