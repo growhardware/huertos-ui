@@ -1,5 +1,5 @@
 import React from 'react';
-import DynamicWrapper from '../components/dev/DynamicWrapper.tsx';
+// import DynamicWrapper from '../components/dev/DynamicWrapper.js';
 const style = {
   'text-align': 'center',
 };
