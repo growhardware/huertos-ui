@@ -7,6 +7,7 @@ import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import { TailComponents } from '../pages/TailComponents';
 import { Public } from '../pages/Public';
+import DevPage from '../pages/DevPage';
 
 const AppRouter = () => (
   <Router>
@@ -15,8 +16,11 @@ const AppRouter = () => (
       {/* <Route exact path="/">
                 <Public />
             </Route> */}
-      <Route path="/tailcomponents">
+      <Route path="/devlist">
         <TailComponents />
+      </Route>
+      <Route path="/dev">
+        <DevPage />
       </Route>
       <Route path="/login">
         <Login />

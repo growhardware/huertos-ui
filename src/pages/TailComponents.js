@@ -13,7 +13,6 @@ const verStyle = {
 export const TailComponents = () => {
   const [showModal, setShowModal] = useState(false);
   const [componentToShow, setComponentToShow] = useState('');
-  console.log('tcshowModal ', showModal);
   return (
     <>
       <div style={style}>
@@ -36,7 +35,6 @@ export const TailComponents = () => {
                   ver
                 </span>
               </li>
-              {/* {React.createElement(c, { text: 'hola' })} */}
               <div
                 onClick={() => {
                   setShowModal(false);

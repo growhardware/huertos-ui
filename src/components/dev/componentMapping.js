@@ -1,5 +1,5 @@
 import React from 'react';
-import { c1, c2 } from '../dev/ComponentsDevList';
+import { c1, c2, c3 } from '../dev/ComponentsDevList';
 const componentMapping = [
   {
     key: '1',
@@ -14,7 +14,16 @@ const componentMapping = [
     //   return c2;
     // },
     componentName: 'c2',
-    props: { text: 'bar1' },
+    props: { text: 'bar2' },
+  },
+  {
+    key: '3',
+    c: c3,
+    // c: () => {
+    //   return c3;
+    // },
+    componentName: 'c3',
+    props: { text: 'bar3' },
   },
 ];
 
