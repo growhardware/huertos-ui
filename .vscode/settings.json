@@ -1,4 +1,12 @@
 {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  }
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  // "files.associations": {
+  //   "*.scss": "tailwindcss"
+  // },
+  "css.lint.unknownAtRules": "ignore",
+  "css.customData": ["./tailwind.json"]
+  // "css.customData": [".vscode/tailwind.json"]
+  // "scss.lint.unknownAtRules": "ignore",
+  // "scss.lint.unknownProperties": "ignore"
+}
