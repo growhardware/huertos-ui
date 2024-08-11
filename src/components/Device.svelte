@@ -25,7 +25,7 @@
         <br />
         kind: {device.kind}
         <br />
-        led status: <div class={device.status.switch? "bg-yellow-400" : "bg-blue-600"}>{device.status.led ? ' ON' : ' OFF'}</div>
+        led status: <div class={device.status.led? "bg-yellow-400" : "bg-blue-600"}>{device.status.led ? ' ON' : ' OFF'}</div>
         led history: <HistoryChart history={ledHistory} tag={'led'} />
         <br />
         switch status: <div class={device.status.switch? "bg-yellow-400" : "bg-blue-600"}>{device.status.switch ? ' ON' : ' OFF'}</div>
