@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^4.2.4",
@@ -46,5 +47,12 @@
     "babel-eslint": "^10.1.0",
     "prettier": "2.3.2",
     "typescript": "^5.5.4"
+=======
+    "frappe-gantt": "^0.6.1",
+    "sails.io.js": "^1.2.1",
+    "socket.io-client": "^2.3.0",
+    "svelte-gantt": "^4.0.7-beta",
+    "underscore": "^1.13.3"
+>>>>>>> a49cff1 (All status and history reactive on device card.)
   }
 }
