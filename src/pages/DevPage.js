@@ -1,6 +1,7 @@
 // una vez desarrollado el componente, mudarlo a ComponentsDevList.js y actualizarlo en componentMapping.js
 
 import React from 'react';
+import '../css/style.css';
 const style = {
   // 'text-align': 'center',
 };
