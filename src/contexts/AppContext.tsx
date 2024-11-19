@@ -29,24 +29,24 @@ export const PrivateRoute = ({ children, ...rest }) => {
       {...rest}
       // TODO !!!!
       // IMPROVE THIS THING
-      // render={({ location }) =>
-      //   auth.user ? (
-      //     children
-      //   ) : (
-      //     // <Redirect
-      //     //   to={{
-      //     //     pathname: '/login',
-      //     //     state: { from: location },
-      //     //   }}
-      //     // />
-      //     <Navigate
-      //       to={{
-      //         pathname: '/login',
-      //         // state: { from: location },
-      //       }}
-      //     />
-      //   )
-      // }
+      render={({ location }) =>
+        auth.user ? (
+          children
+        ) : (
+          // <Redirect
+          //   to={{
+          //     pathname: '/login',
+          //     state: { from: location },
+          //   }}
+          // />
+          <Navigate
+            to={{
+              pathname: '/auth/signin',
+              state: { from: location },
+            }}
+          />
+        )
+      }
     />
   );
 };

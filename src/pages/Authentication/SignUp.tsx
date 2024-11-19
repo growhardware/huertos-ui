@@ -7,9 +7,17 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '../../contexts/AppContext';
 // import { useHistory, useLocation } from 'react-router-dom'; // useHistory deprecated in v6
 import { useLocation } from 'react-router-dom';
+// import { signUp } from '../../services/session-service';
+import { signUp } from '../../services/authService';
+
+// import { useContext } from 'react';
+// import { AuthContext } from '../../contexts/AuthContext';
 
 const SignUp: React.FC = () => {
   const [checked, setChecked] = React.useState(true);
+  // const authContext = useContext(AuthContext);
+
+  const [user, setUser] = React.useState('');
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -23,11 +31,11 @@ const SignUp: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const auth = useAuth();
+  // const auth = useAuth();
   const callback = (body, JWR) => {
     console.log('Signup callback launched');
     if (body === 'OK') {
-      console.log('Successfully signed up', JWR);
+      console.log('Successfully signed up ', JWR);
     } else {
       console.log('We can not sign up', JWR);
     }
@@ -35,7 +43,8 @@ const SignUp: React.FC = () => {
   };
   const onSubmit = (data) => {
     console.log(data);
-    auth.signup(data, callback);
+    // auth.signup(data, callback);
+    signUp(data, callback);
   };
 
   return (

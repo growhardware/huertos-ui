@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CardDataStats from '../../components/CardDataStats';
 import ChartOne from '../../components/Charts/ChartOne';
 import ChartThree from '../../components/Charts/ChartThree';
@@ -6,9 +6,14 @@ import ChartTwo from '../../components/Charts/ChartTwo';
 import ChatCard from '../../components/Chat/ChatCard';
 import MapOne from '../../components/Maps/MapOne';
 import TableOne from '../../components/Tables/TableOne';
+import { AuthContext } from '../../contexts/AuthContext';
+import { Navigate } from 'react-router-dom';
 
 const ECommerce: React.FC = () => {
-  return (
+  const authContext = useContext(AuthContext);
+  return authContext == '' ? (
+    <Navigate to="/auth/signin"></Navigate>
+  ) : (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         <CardDataStats title="Total views" total="$3.456K" rate="0.43%" levelUp>
