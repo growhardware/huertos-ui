@@ -16,7 +16,9 @@ import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import DefaultLayout from './layout/DefaultLayout';
-import { AuthContext } from './contexts/AuthContext';
+// import { AuthContext } from './contexts/AuthContext';
+import { AppProvider } from './contexts/AppContext';
+import { AuthProvider } from './hooks/useAuthContext';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -34,7 +36,7 @@ function App() {
     <Loader />
   ) : (
     <>
-      <AuthContext.Provider value={''}>
+      <AuthProvider>
         <DefaultLayout>
           <Routes>
             <Route
@@ -148,7 +150,7 @@ function App() {
             />
           </Routes>
         </DefaultLayout>
-      </AuthContext.Provider>
+      </AuthProvider>
     </>
   );
 }

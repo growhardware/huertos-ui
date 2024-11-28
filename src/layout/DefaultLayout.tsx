@@ -1,19 +1,20 @@
 import React, { useState, ReactNode, useContext } from 'react';
 import Header from '../components/Header/index';
 import Sidebar from '../components/Sidebar/index';
-
-import { AuthContext } from '../contexts/AuthContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 // TODO!!!
 // CONDICIONAR EL RENDERIZADO DE COMPONENTES BASADO EN LOGIN (CONTEXT)
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const authContext = useContext(AuthContext);
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  if (authContext == '') {
+  const { username, setUsername } = useAuthContext();
+
+  // if (authContext == '') {
+  if (!username) {
     return (
       <div className="dark:bg-boxdark-2 dark:text-bodydark">
+        auth.isAuthenticated: {username}
         {/* <!-- ===== Page Wrapper Start ===== --> */}
         <div className="flex h-screen overflow-hidden">
           {/* <!-- ===== Sidebar Start ===== !!!>>>>> MOSTRAR SOLO SI USUARIO AUTENTICADO --> */}
@@ -42,6 +43,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   } else {
     return (
       <div className="dark:bg-boxdark-2 dark:text-bodydark">
+        auth.isAuthenticated: {username}
         {/* <!-- ===== Page Wrapper Start ===== --> */}
         <div className="flex h-screen overflow-hidden">
           {/* <!-- ===== Sidebar Start ===== !!!>>>>> MOSTRAR SOLO SI USUARIO AUTENTICADO --> */}
