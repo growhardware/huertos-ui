@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 // import { Navigate } from 'react-router-dom'; // navigate replace link since react-router-dom > v6, instead using <a><a/> html tag
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import LogoDark from '../../images/logo/logo-dark.svg';

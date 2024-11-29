@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import ClickOutside from '../ClickOutside';
 import UserOne from '../../images/user/user-01.png';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import { auth } from '../../hooks/useAuthContext';
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { username } = useAuthContext();
+  const { username, setUsername } = useAuthContext();
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -121,7 +122,13 @@ const DropdownUser = () => {
               </Link>
             </li>
           </ul>
-          <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+          <button
+            className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+            onClick={() => {
+              auth.signout(setUsername(null));
+              <Navigate to="auth/signin"></Navigate>;
+            }}
+          >
             <svg
               className="fill-current"
               width="22"
