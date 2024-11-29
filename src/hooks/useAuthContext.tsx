@@ -37,10 +37,12 @@ export const AuthContext = createContext<AuthContextValue | undefined>(
   undefined,
 );
 
+let _initial_value: string | undefined = '';
 // export const AuthProvider: React.FC = ({ children }) => {
 export const AuthProvider: any = ({ children }) => {
   // Set initial value
-  const _initial_value: string = useMemo(() => {
+  // const _initial_value: string | undefined = useMemo(() => {
+  _initial_value = useMemo(() => {
     const local_storage_value_str = localStorage.getItem('state:');
     // If there is a value stored in localStorage, use that
     if (local_storage_value_str) {

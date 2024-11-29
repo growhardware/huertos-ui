@@ -1,5 +1,5 @@
 import React, { useState, ReactNode, useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import Header from '../components/Header/index';
 import Sidebar from '../components/Sidebar/index';
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -9,7 +9,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { username, setUsername } = useAuthContext();
+  const { username } = useAuthContext();
 
   // if (authContext == '') {
   if (!username) {
@@ -47,7 +47,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   } else {
     return (
       <div className="dark:bg-boxdark-2 dark:text-bodydark">
-        auth.isAuthenticated: {username}
+        auth.isAuthenticated: {username - location}
         {/* <!-- ===== Page Wrapper Start ===== --> */}
         <div className="flex h-screen overflow-hidden">
           {/* <!-- ===== Sidebar Start ===== !!!>>>>> MOSTRAR SOLO SI USUARIO AUTENTICADO --> */}
