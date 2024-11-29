@@ -1,4 +1,5 @@
 import React, { useState, ReactNode, useContext } from 'react';
+import { Navigate } from 'react-router-dom';
 import Header from '../components/Header/index';
 import Sidebar from '../components/Sidebar/index';
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -13,32 +14,35 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   // if (authContext == '') {
   if (!username) {
     return (
-      <div className="dark:bg-boxdark-2 dark:text-bodydark">
-        auth.isAuthenticated: {username}
-        {/* <!-- ===== Page Wrapper Start ===== --> */}
-        <div className="flex h-screen overflow-hidden">
-          {/* <!-- ===== Sidebar Start ===== !!!>>>>> MOSTRAR SOLO SI USUARIO AUTENTICADO --> */}
-          {/* <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
-          {/* <!-- ===== Sidebar End ===== --> */}
+      <>
+        {/* <Navigate to="/auth/signin"></Navigate> */}
+        <div className="dark:bg-boxdark-2 dark:text-bodydark">
+          auth.isAuthenticated: {username}
+          {/* <!-- ===== Page Wrapper Start ===== --> */}
+          <div className="flex h-screen overflow-hidden">
+            {/* <!-- ===== Sidebar Start ===== !!!>>>>> MOSTRAR SOLO SI USUARIO AUTENTICADO --> */}
+            {/* <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
+            {/* <!-- ===== Sidebar End ===== --> */}
 
-          {/* <!-- ===== Content Area Start ===== --> */}
-          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-            {/* <!-- ===== Header Start ===== !!!>>>>> MOSTRAR SOLO SI USUARIO AUTENTICADO --> */}
-            {/* <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
-            {/* <!-- ===== Header End ===== --> */}
+            {/* <!-- ===== Content Area Start ===== --> */}
+            <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+              {/* <!-- ===== Header Start ===== !!!>>>>> MOSTRAR SOLO SI USUARIO AUTENTICADO --> */}
+              {/* <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
+              {/* <!-- ===== Header End ===== --> */}
 
-            {/* <!-- ===== Main Content Start ===== --> */}
-            <main>
-              <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-                {children}
-              </div>
-            </main>
-            {/* <!-- ===== Main Content End ===== --> */}
+              {/* <!-- ===== Main Content Start ===== --> */}
+              <main>
+                <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+                  {children}
+                </div>
+              </main>
+              {/* <!-- ===== Main Content End ===== --> */}
+            </div>
+            {/* <!-- ===== Content Area End ===== --> */}
           </div>
-          {/* <!-- ===== Content Area End ===== --> */}
+          {/* <!-- ===== Page Wrapper End ===== --> */}
         </div>
-        {/* <!-- ===== Page Wrapper End ===== --> */}
-      </div>
+      </>
     );
   } else {
     return (

@@ -5,9 +5,10 @@ import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import LogoDark from '../../images/logo/logo-dark.svg';
 import Logo from '../../images/logo/logo.svg';
 import { useForm } from 'react-hook-form';
-import { useAuth } from '../../contexts/AppContext';
+// import { useAuth } from '../../contexts/AppContext';
 import { useLocation } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import { auth } from '../../hooks/useAuthContext';
 
 const SignUp: React.FC = () => {
   const [checked, setChecked] = React.useState(true);
@@ -31,7 +32,7 @@ const SignUp: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const auth = useAuth();
+  // const auth = useAuth();
   const callback = (body, JWR) => {
     console.log('Signup callback launched');
     if (body === 'OK') {

@@ -6,11 +6,11 @@ import ChartTwo from '../../components/Charts/ChartTwo';
 import ChatCard from '../../components/Chat/ChatCard';
 import MapOne from '../../components/Maps/MapOne';
 import TableOne from '../../components/Tables/TableOne';
-import { AuthContext } from '../../contexts/AuthContext';
+// import { AuthContext } from '../../contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
 
 const ECommerce: React.FC = () => {
-  const authContext = useContext(AuthContext);
+  // const authContext = useContext(AuthContext);
   return 1 == 2 ? (
     <Navigate to="/auth/signup"></Navigate>
   ) : (

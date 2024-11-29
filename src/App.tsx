@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import Loader from './common/Loader';
@@ -16,9 +16,7 @@ import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import DefaultLayout from './layout/DefaultLayout';
-// import { AuthContext } from './contexts/AuthContext';
-import { AppProvider } from './contexts/AppContext';
-import { AuthProvider } from './hooks/useAuthContext';
+import { AuthProvider, useAuthContext } from './hooks/useAuthContext';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);

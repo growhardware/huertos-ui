@@ -1,6 +1,12 @@
 // import { useState } from 'react';
-import React, { useState, useContext, createContext } from 'react';
-import { signUp, signIn, signOut } from '../services/authService';
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useContext,
+  createContext,
+} from 'react';
+import { signUp, signIn, signOut } from '../services/auth-service';
 // import { signUp, signIn, signOut } from '../services/auth';
 // import { useProvideAuth } from '../hooks/useAuth';
 import { Route, Navigate } from 'react-router-dom';
@@ -10,7 +16,7 @@ interface AuthContextValue {
   setUsername: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-const auth = {
+export const auth = {
   isAuthenticated: false,
   signup(credentials, cb) {
     auth.isAuthenticated = true;
@@ -27,11 +33,30 @@ const auth = {
 };
 
 // const authContext = createContext(auth);
-const AuthContext = createContext<AuthContextValue | undefined>(undefined);
+export const AuthContext = createContext<AuthContextValue | undefined>(
+  undefined,
+);
 
 // export const AuthProvider: React.FC = ({ children }) => {
 export const AuthProvider: any = ({ children }) => {
-  const [username, setUsername] = useState<string | null>(null);
+  // Set initial value
+  const _initial_value: string = useMemo(() => {
+    const local_storage_value_str = localStorage.getItem('state:');
+    // If there is a value stored in localStorage, use that
+    if (local_storage_value_str) {
+      return JSON.parse(local_storage_value_str);
+    }
+    // Otherwise use initial_value that was passed to the function
+    return _initial_value;
+  }, []);
+  const [username, setUsername] = useState<string | null>(_initial_value);
+  // const [username, setUsername] = useState<string | null>(null);
+
+  useEffect(() => {
+    const username_str = JSON.stringify(username); // Stringified state
+    localStorage.setItem('state:', username_str); // Set stringified username as item in localStorage
+  }, [username]);
+
   return (
     <AuthContext.Provider value={{ username, setUsername }}>
       {children}
