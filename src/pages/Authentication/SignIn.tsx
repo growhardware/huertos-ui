@@ -1,10 +1,39 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 // import { Link } from 'react-router-dom'; using <a><a/> html tag
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import LogoDark from '../../images/logo/logo-dark.svg';
 import Logo from '../../images/logo/logo.svg';
+import { auth, useAuthContext } from '../../hooks/useAuthContext';
 
 const SignIn: React.FC = () => {
+  const { username, setUsername } = useAuthContext();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  let userName;
+
+  const callback = (body, JWR) => {
+    console.log('SignIn callback launched');
+    if (body === 'OK') {
+      console.log('Successfully signed in ', JWR);
+      auth.isAuthenticated = true;
+      setUsername(userName);
+    } else {
+      console.log('We can not sign in', JWR);
+    }
+    // history.replace(from);
+  };
+  const onSubmit = (data) => {
+    console.log(data);
+    // data.rememberMe = false;
+    userName = data.email;
+    auth.signin(data, callback);
+    // signUp(data, callback);
+  };
+
   return (
     <>
       <Breadcrumb pageName="Sign In" />
@@ -158,7 +187,7 @@ const SignIn: React.FC = () => {
                 Sign In to GrowHardware
               </h2>
 
-              <form>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
                     Email
@@ -167,6 +196,7 @@ const SignIn: React.FC = () => {
                     <input
                       type="email"
                       placeholder="Enter your email"
+                      {...register('email', { required: true })}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
 
@@ -198,6 +228,7 @@ const SignIn: React.FC = () => {
                     <input
                       type="password"
                       placeholder="6+ Characters, 1 Capital letter"
+                      {...register('password', { required: true })}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
 

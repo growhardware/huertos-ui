@@ -7,8 +7,7 @@ import Logo from '../../images/logo/logo.svg';
 import { useForm } from 'react-hook-form';
 // import { useAuth } from '../../contexts/AppContext';
 import { useLocation } from 'react-router-dom';
-import { useAuthContext } from '../../hooks/useAuthContext';
-import { auth } from '../../hooks/useAuthContext';
+import { auth, useAuthContext } from '../../hooks/useAuthContext';
 
 const SignUp: React.FC = () => {
   const [checked, setChecked] = React.useState(true);
