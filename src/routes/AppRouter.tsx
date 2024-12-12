@@ -15,6 +15,7 @@ import Alerts from '../pages/UiElements/Alerts';
 import Buttons from '../pages/UiElements/Buttons';
 import DefaultLayout from '../layout/DefaultLayout';
 import Devices from '../pages/Devices';
+import DevicesCreate from '../pages/DevicesCreate';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 function AppRouter() {
@@ -76,6 +77,15 @@ function AppRouter() {
                 <>
                   <PageTitle title="Devices | GrowHardware" />
                   <Devices />
+                </>
+              }
+            />
+            <Route
+              path="/devices/create"
+              element={
+                <>
+                  <PageTitle title="Devices Create | GrowHardware" />
+                  <DevicesCreate />
                 </>
               }
             />

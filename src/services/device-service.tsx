@@ -1,45 +1,44 @@
-export const postDevice = (api, attributes, cb) => {
-    const reqOptions = {
-        method: 'post',
-        url: '/device',
-        data: {
-            alias: attributes.alias,
-            kind: attributes.kind,
-            port: attributes.port
-        },
-        headers: {}
-    }
-    api.socket.request(reqOptions, cb);
-}
+import io from './socket';
 
-export const handleResponse = (body, JWR)=>{
-        if(JWR.statusCode === 200){
-             console.log('Created device. ID: ', body.id);
-        //     // setState({creating: false});
-        //     // props.onCreated();
-        }
-        else{
-           console.log('Error: ', JWR);
-        }
-    }
-    // const handleSubmit=(event)=>{
-export const createDevice = (api, msg) => {
-    
-        console.log('ejecutando...api ', api)
-        console.log('ejecutando...msg ', msg)
-        const attributes = {
-            alias: msg.alias,
-            kind: msg.kind,
-            port: msg.port,
-        };
-        postDevice(api, attributes, handleResponse);
-        // event.preventDefault();
-    }
+export const postDevice = (attributes, cb) => {
+  const reqOptions = {
+    method: 'post',
+    url: '/device',
+    data: {
+      alias: attributes.alias,
+      kind: attributes.kind,
+      port: attributes.port,
+      status: { test: 'test' },
+    },
+    headers: {},
+  };
+  io.socket.request(reqOptions, cb);
+};
 
-
-
-
-
+export const handleResponse = (body, JWR) => {
+  console.log('body ', body);
+  if (JWR.statusCode === 200) {
+    console.log('Created device. ID: ', body.id);
+    //     // setState({creating: false});
+    //     // props.onCreated();
+  } else {
+    console.log('Error: ', JWR);
+  }
+};
+// const handleSubmit=(event)=>{
+export const createDevice = (msg) => {
+  console.log('ejecutando...io ', io);
+  console.log('ejecutando...msg ', msg);
+  const attributes = {
+    alias: msg.alias,
+    kind: msg.kind,
+    port: msg.port,
+    status: msg.status,
+    settings: msg.settings,
+  };
+  postDevice(attributes, handleResponse);
+  // event.preventDefault();
+};
 
 // import http from '../http-common'
 
