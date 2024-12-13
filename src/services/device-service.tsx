@@ -8,11 +8,12 @@ export const postDevice = (attributes, cb) => {
       alias: attributes.alias,
       kind: attributes.kind,
       port: attributes.port,
-      status: { test: 'test' },
+      // status: { test: 'test' } || {},
     },
     headers: {},
   };
   io.socket.request(reqOptions, cb);
+  // io.socket.post('device', attributes, cb);
 };
 
 export const handleResponse = (body, JWR) => {
@@ -33,8 +34,8 @@ export const createDevice = (msg) => {
     alias: msg.alias,
     kind: msg.kind,
     port: msg.port,
-    status: msg.status,
-    settings: msg.settings,
+    status: {},
+    settings: {},
   };
   postDevice(attributes, handleResponse);
   // event.preventDefault();

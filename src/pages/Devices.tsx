@@ -1,10 +1,20 @@
+import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
 import CardDataStats from '../components/CardDataStats';
+import { DevicesSvg } from '../components/Svg/DevicesSvg';
 const Devices = () => {
   return (
     <>
       <Breadcrumb pageName="Devices" />
-
+      {/* start go to create device */}
+      <Link
+        to="/devices/create"
+        className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+      >
+        <DevicesSvg></DevicesSvg>
+        Create
+      </Link>
+      {/* end create device */}
       {/* <!-- ====== Devices Section Start ====== --> */}
       {/* <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"> */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
@@ -17,11 +27,11 @@ const Devices = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512.01 512.01"
           >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g
               id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             ></g>
             <g id="SVGRepo_iconCarrier">
               {' '}
