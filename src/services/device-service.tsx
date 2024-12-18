@@ -41,6 +41,39 @@ export const createDevice = (msg) => {
   // event.preventDefault();
 };
 
+export const getDevices = async () => {
+  // const cbGetDevices = (body, JWR) => {
+  //   console.log('body ', body);
+  //   if (JWR.statusCode === 200) {
+  //     console.log('Get Devices: 200 ok');
+  //     // console.log('Get Devices: ', body);
+  //     return body;
+  //   } else {
+  //     console.log('Error: ', JWR);
+  //   }
+  // };
+  function cbGetDevices(body, JWR) {
+    return function () {
+      console.log('body ', body);
+      if (JWR.statusCode === 200) {
+        console.log('Get Devices: 200 ok');
+        // console.log('Get Devices: ', body);
+        return body;
+      } else {
+        console.log('Error: ', JWR);
+      }
+    };
+  }
+  const reqOptions = {
+    method: 'get',
+    url: '/device',
+    headers: {},
+  };
+  const devices = await io.socket.request(reqOptions, cbGetDevices);
+  console.log('devices ', devices);
+  // return devices;
+};
+
 // import http from '../http-common'
 
 // const getAll = () => {

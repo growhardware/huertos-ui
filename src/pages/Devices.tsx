@@ -1,8 +1,52 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Await, Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
 import CardDataStats from '../components/CardDataStats';
 import { DevicesSvg } from '../components/Svg/DevicesSvg';
+// import { getDevices } from '../services/device-service';
+import io from '../services/socket';
+import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
+
 const Devices = () => {
+  const [data, setData] = useState([]);
+  // let data;
+  const handleResponse = (body, JWR) => {
+    console.log('body ', body);
+    if (JWR.statusCode === 200) {
+      // data = body;
+      setData(body);
+      console.log('hr getDevices ', body);
+      // return body;
+      //     // setState({creating: false});
+      //     // props.onCreated();
+    } else {
+      console.log('Error: ', JWR);
+    }
+  };
+
+  const getDevices = async () => {
+    const reqOptions = {
+      method: 'get',
+      url: '/device',
+      headers: {},
+    };
+    return await io.socket.request(reqOptions, handleResponse);
+  };
+
+  // getDevices();
+
+  // const [data, setData] = useState([]);
+  // const [data, setData] = useState(null);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        await getDevices();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, []);
   return (
     <>
       <Breadcrumb pageName="Devices" />
@@ -14,6 +58,59 @@ const Devices = () => {
         <DevicesSvg></DevicesSvg>
         Create
       </Link>
+
+      {data.map((row: any, idx: number) => {
+        return (
+          <tr key={idx} className="content-center">
+            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+              <span className={`label label-${row.para}`}>{row.kind}</span>
+            </td>
+            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+              {row.id}
+            </td>
+            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+              <span className={`label label-${row.para}`}>{row.alias}</span>
+            </td>
+
+            {/* <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+              <span>
+                {row.criterion == 0
+                  ? 'goes down by'
+                  : row.criterion == 1
+                  ? 'goes up by'
+                  : row.criterion == 2
+                  ? 'is smaller than'
+                  : row.criterion == 3
+                  ? 'is greater than'
+                  : 'is equal to'}
+              </span>
+            </td> */}
+            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+              {JSON.stringify(row.settings)}
+            </td>
+            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+              <span>
+                {row.type == 0 ? 'Info' : row.type == 1 ? 'Warning' : 'Alert'}
+              </span>
+            </td>
+
+            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+              <span className="actions flex grid-cols-2 gap-4">
+                <BsFillTrashFill
+                  className="delete-btn cursor-pointer"
+                  onClick={() => deleteRow(idx)}
+                />
+
+                <BsFillPencilFill
+                  className="edit-btn cursor-pointer"
+                  onClick={() => editRow(idx)}
+                />
+              </span>
+            </td>
+          </tr>
+        );
+      })}
+
       {/* end create device */}
       {/* <!-- ====== Devices Section Start ====== --> */}
       {/* <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"> */}
