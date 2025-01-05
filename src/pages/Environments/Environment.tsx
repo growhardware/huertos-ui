@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Await, Link } from 'react-router-dom';
-import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
-import CardDataStats from '../components/CardDataStats';
-import { DevicesSvg } from '../components/Svg/DevicesSvg';
+import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
+import CardDataStats from '../../components/CardDataStats';
+import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 // import { getDevices } from '../services/device-service';
-import io from '../services/socket';
+import io from '../../services/socket';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 
 const Devices = () => {

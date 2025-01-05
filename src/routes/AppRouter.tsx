@@ -14,10 +14,10 @@ import Tables from '../pages/Tables';
 import Alerts from '../pages/UiElements/Alerts';
 import Buttons from '../pages/UiElements/Buttons';
 import DefaultLayout from '../layout/DefaultLayout';
-import Devices from '../pages/Devices';
-import DevicesCreate from '../pages/DevicesCreate';
-import Environment from '../pages/Environment';
-import EnvironmentCreate from '../pages/EnvironmentCreate';
+import Devices from '../pages/Devices/Devices';
+import DevicesCreate from '../pages/Devices/DevicesCreate';
+import Environment from '../pages/Environments/Environment';
+import EnvironmentCreate from '../pages/Environments/EnvironmentCreate';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 function AppRouter() {

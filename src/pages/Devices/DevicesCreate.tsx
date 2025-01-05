@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
-import { createDevice } from '../services/device-service';
-import { DevicesSvg } from '../components/Svg/DevicesSvg';
+import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
+import { createDevice } from '../../services/device-service';
+import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 const DevicesCreate = () => {
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
