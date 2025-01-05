@@ -16,6 +16,8 @@ import Buttons from '../pages/UiElements/Buttons';
 import DefaultLayout from '../layout/DefaultLayout';
 import Devices from '../pages/Devices';
 import DevicesCreate from '../pages/DevicesCreate';
+import Environment from '../pages/Environment';
+import EnvironmentCreate from '../pages/EnvironmentCreate';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 function AppRouter() {
@@ -86,6 +88,24 @@ function AppRouter() {
                 <>
                   <PageTitle title="Devices Create | GrowHardware" />
                   <DevicesCreate />
+                </>
+              }
+            />
+            <Route
+              path="/environments"
+              element={
+                <>
+                  <PageTitle title="Environment | GrowHardware" />
+                  <Environment />
+                </>
+              }
+            />
+            <Route
+              path="/environment/create"
+              element={
+                <>
+                  <PageTitle title="Environment Create | GrowHardware" />
+                  <EnvironmentCreate />
                 </>
               }
             />
