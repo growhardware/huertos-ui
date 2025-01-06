@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Await, Link } from 'react-router-dom';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 // import CardDeviceStats from '../../components/CardDeviceStats';
-import CardDeviceStats from '../../components/Devices/CardDeviceStats';
+import CardDeviceStats from '../../components/Device/CardDeviceStats';
 import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 // import { getDevices } from '../services/device-service';
 import io from '../../services/socket';

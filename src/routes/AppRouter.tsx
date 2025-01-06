@@ -17,8 +17,8 @@ import DefaultLayout from '../layout/DefaultLayout';
 import Devices from '../pages/Device/DeviceList';
 import DevicesCreate from '../pages/Device/DeviceCreate';
 import DevicesUpdate from '../pages/Device/DeviceUpdate';
-import Environment from '../pages/Environments/Environment';
-import EnvironmentCreate from '../pages/Environments/EnvironmentCreate';
+import Environment from '../pages/Environment/EnvironmentList';
+import EnvironmentCreate from '../pages/Environment/EnvironmentCreate';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 function AppRouter() {
