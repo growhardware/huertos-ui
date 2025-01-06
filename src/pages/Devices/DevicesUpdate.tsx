@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { updateDevice, getDevice } from '../../services/device-service';
 import { DevicesSvg } from '../../components/Svg/DevicesSvg';
-const DevicesCreate = () => {
+const DeviceUpdate = () => {
+  const { id } = useParams();
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
 
@@ -30,14 +31,14 @@ const DevicesCreate = () => {
   };
   return (
     <>
-      <Breadcrumb pageName="Create a device" />
+      <Breadcrumb pageName="Update device" />
       {/* start back to devices */}
       <Link
         to="/devices"
         className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
       >
         <DevicesSvg></DevicesSvg>
-        Devices
+        Devices {id}
       </Link>
       {/* end back to devices */}
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
@@ -178,4 +179,4 @@ const DevicesCreate = () => {
   );
 };
 
-export default DevicesCreate;
+export default DeviceUpdate;

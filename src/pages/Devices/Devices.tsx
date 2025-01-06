@@ -119,7 +119,7 @@ const Devices = () => {
             <CardDeviceStats
               title={row.kind}
               total={row.alias}
-              rate={row.id}
+              id={row.id}
               levelUp
             >
               <svg

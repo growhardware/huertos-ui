@@ -1,19 +1,29 @@
 import React, { ReactNode } from 'react';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
-
+import { Link } from 'react-router-dom';
 interface CardDeviceStatsProps {
   title: string;
   total: string;
-  rate: string;
+  id: string; // unico atributo mapeado al momento
   levelUp?: boolean;
   levelDown?: boolean;
   children: ReactNode;
 }
 
+const goToUpdateDevice = (id: string) => {
+  // const to = `/device/update/${id}`;
+  const to = `/devices`;
+  return (
+    <Link
+      to={to}
+      className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+    ></Link>
+  );
+};
 const CardDeviceStats: React.FC<CardDeviceStatsProps> = ({
   title,
   total,
-  rate,
+  id, // unico atributo mapeado al momento
   levelUp,
   levelDown,
   children,
@@ -34,8 +44,14 @@ const CardDeviceStats: React.FC<CardDeviceStatsProps> = ({
 
               <BsFillPencilFill
                 className="edit-btn cursor-pointer"
-                onClick={() => editRow(idx)}
+                onClick={() => (window.location = `/devices/update/${id}`)}
               />
+              {/* <BsFillPencilFill
+                className="edit-btn cursor-pointer"
+                onClick={() => {
+                  goToUpdateDevice(id);
+                }}
+              /> */}
             </span>
           </td>
         </div>
@@ -53,7 +69,7 @@ const CardDeviceStats: React.FC<CardDeviceStatsProps> = ({
             levelUp && 'text-meta-3'
           } ${levelDown && 'text-meta-5'} `}
         >
-          {rate}
+          {id}
 
           {levelUp && (
             <svg
