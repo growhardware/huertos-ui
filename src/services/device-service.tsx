@@ -16,10 +16,20 @@ export const postDevice = (attributes, cb) => {
   // io.socket.post('device', attributes, cb);
 };
 
-export const putDevice = (attributes, cb) => {
+export const getDevice = async (id, handleResponse) => {
   const reqOptions = {
-    method: 'put',
-    url: '/device',
+    method: 'get',
+    url: `/device/${id}`,
+    headers: {},
+  };
+  return await io.socket.request(reqOptions, handleResponse);
+};
+
+export const putDevice = (id, attributes, cb) => {
+  // const { id } = attributes;
+  const reqOptions = {
+    method: 'patch',
+    url: `/device/676233f58657a4da81684e6e`,
     data: {
       alias: attributes.alias,
       kind: attributes.kind,
@@ -28,6 +38,7 @@ export const putDevice = (attributes, cb) => {
     },
     headers: {},
   };
+  console.log('reqOptions ', reqOptions);
   io.socket.request(reqOptions, cb);
   // io.socket.post('device', attributes, cb);
 };
@@ -65,7 +76,8 @@ export const updateDevice = (msg) => {
     status: {},
     settings: {},
   };
-  putDevice(attributes, handleResponse);
+  // putDevice(attributes, handleResponse);
+  postDevice(attributes, handleResponse);
   // event.preventDefault();
 };
 
@@ -102,28 +114,28 @@ export const getDevices = async () => {
   // return devices;
 };
 
-export const getDevice = async (id) => {
-  function cbGetDevices(body, JWR) {
-    return function () {
-      console.log('body ', body);
-      if (JWR.statusCode === 200) {
-        console.log('Get Devices: 200 ok');
-        // console.log('Get Devices: ', body);
-        return body;
-      } else {
-        console.log('Error: ', JWR);
-      }
-    };
-  }
-  const reqOptions = {
-    method: 'get',
-    url: `/device/${id}`,
-    headers: {},
-  };
-  const devices = await io.socket.request(reqOptions, cbGetDevices);
-  console.log('get /device/id ', id, devices);
-  // return devices;
-};
+// export const getDevice = async (id) => {
+//   function cbGetDevices(body, JWR) {
+//     return function () {
+//       console.log('body ', body);
+//       if (JWR.statusCode === 200) {
+//         console.log('Get Devices: 200 ok');
+//         // console.log('Get Devices: ', body);
+//         return body;
+//       } else {
+//         console.log('Error: ', JWR);
+//       }
+//     };
+//   }
+//   const reqOptions = {
+//     method: 'get',
+//     url: `/device/${id}`,
+//     headers: {},
+//   };
+//   const devices = await io.socket.request(reqOptions, cbGetDevices);
+//   console.log('get /device/id ', id, devices);
+//   // return devices;
+// };
 
 // import http from '../http-common'
 

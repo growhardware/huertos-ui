@@ -1,17 +1,54 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { updateDevice, getDevice } from '../../services/device-service';
 import { DevicesSvg } from '../../components/Svg/DevicesSvg';
+// import io from '../../services/socket';
 const DeviceUpdate = () => {
   const { id } = useParams();
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
+  const [data, setData] = useState([]);
+  const [alias, setName] = useState(); // use `undefined` value
+
+  function handleChange(event) {
+    setName(event.target.value);
+  }
+  // let data;
+  const handleResponse = (body, JWR) => {
+    console.log('body ', body);
+    if (JWR.statusCode === 200) {
+      // data = body;
+      setData(body);
+      setName(body.alias);
+      console.log('hr getDevice ', body);
+      // return body;
+      //     // setState({creating: false});
+      //     // props.onCreated();
+    } else {
+      console.log('Error: ', JWR);
+    }
+  };
+
+  const hChange = (e) => {
+    data.alias = e.target.value;
+  };
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        await getDevice(id, handleResponse);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, []);
 
   const changeTextColor = () => {
     setIsOptionSelected(true);
   };
+
   const {
     register,
     handleSubmit,
@@ -38,7 +75,7 @@ const DeviceUpdate = () => {
         className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
       >
         <DevicesSvg></DevicesSvg>
-        Devices {id}
+        Devices
       </Link>
       {/* end back to devices */}
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
@@ -60,7 +97,9 @@ const DeviceUpdate = () => {
                   <input
                     type="text"
                     placeholder="Alias"
-                    {...register('alias', { required: true })}
+                    value={alias}
+                    onChange={handleChange}
+                    // {...register('alias', { required: true })}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
                 </div>
@@ -77,8 +116,8 @@ const DeviceUpdate = () => {
                   /> */}
                   <select
                     placeholder="Kind"
-                    {...register('kind', { required: true })}
-                    value={selectedOption}
+                    // {...register('kind', { required: true })}
+                    value={data.kind ? data.kind : selectedOption}
                     onChange={(e) => {
                       setSelectedOption(e.target.value);
                       changeTextColor();
@@ -106,12 +145,6 @@ const DeviceUpdate = () => {
                     >
                       water-medulla
                     </option>
-                    {/* <option
-                        value="Canada"
-                        className="text-body dark:text-bodydark"
-                      >
-                        Canada
-                      </option> */}
                   </select>
                 </div>
 
@@ -122,7 +155,8 @@ const DeviceUpdate = () => {
                   <input
                     type="text"
                     placeholder="Port"
-                    {...register('port', { required: true })}
+                    value={data.port}
+                    // {...register('port', { required: true })}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
                   />
                 </div>
@@ -134,7 +168,8 @@ const DeviceUpdate = () => {
                   <input
                     type="text"
                     placeholder="Status"
-                    {...register('status', { required: true })}
+                    value={JSON.stringify(data.status)}
+                    // {...register('status', { required: true })}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
                   />
                 </div>
@@ -158,7 +193,8 @@ const DeviceUpdate = () => {
                   <textarea
                     rows={6}
                     placeholder="Active textarea"
-                    {...register('settings', { required: true })}
+                    value={JSON.stringify(data.settings)}
+                    // {...register('settings', { required: true })}
                     className="w-full rounded-lg border-[1.5px] border-primary bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input dark:text-white"
                   ></textarea>
                 </div>
@@ -166,7 +202,7 @@ const DeviceUpdate = () => {
                 <div className="mb-3">
                   <input
                     type="submit"
-                    value="Create"
+                    value="Update"
                     className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
                   />
                 </div>

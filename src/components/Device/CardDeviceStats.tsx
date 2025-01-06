@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 interface CardDeviceStatsProps {
   title: string;
   total: string;
@@ -10,16 +11,6 @@ interface CardDeviceStatsProps {
   children: ReactNode;
 }
 
-const goToUpdateDevice = (id: string) => {
-  // const to = `/device/update/${id}`;
-  const to = `/devices`;
-  return (
-    <Link
-      to={to}
-      className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
-    ></Link>
-  );
-};
 const CardDeviceStats: React.FC<CardDeviceStatsProps> = ({
   title,
   total,
@@ -28,6 +19,7 @@ const CardDeviceStats: React.FC<CardDeviceStatsProps> = ({
   levelDown,
   children,
 }) => {
+  const navigate = useNavigate();
   return (
     <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
@@ -41,17 +33,12 @@ const CardDeviceStats: React.FC<CardDeviceStatsProps> = ({
                 className="delete-btn cursor-pointer"
                 onClick={() => deleteRow(idx)}
               />
-
               <BsFillPencilFill
                 className="edit-btn cursor-pointer"
-                onClick={() => (window.location = `/devices/update/${id}`)}
-              />
-              {/* <BsFillPencilFill
-                className="edit-btn cursor-pointer"
                 onClick={() => {
-                  goToUpdateDevice(id);
+                  navigate(`/devices/update/${id}`, { replace: true }); // <-- redirect
                 }}
-              /> */}
+              />
             </span>
           </td>
         </div>
