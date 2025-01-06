@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Await, Link } from 'react-router-dom';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
-import CardDataStats from '../../components/CardDataStats';
-import CardDeviceStats from '../../components/CardDeviceStats';
+// import CardDeviceStats from '../../components/CardDeviceStats';
+import CardDeviceStats from '../../components/Devices/CardDeviceStats';
 import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 // import { getDevices } from '../services/device-service';
 import io from '../../services/socket';
