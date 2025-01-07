@@ -46,6 +46,7 @@ export const putDevice = async (id, attributes, cb) => {
 export const patchDevice = async (id, attributes, cb) => {
   // const { id } = attributes;
   const data = {
+    id: id,
     alias: attributes.alias,
     kind: attributes.kind,
     port: attributes.port,
