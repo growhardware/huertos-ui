@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
-import { updateDevice, getDevice } from '../../services/device-service';
+import {
+  updateDevice,
+  getDevice,
+  deleteDevice,
+} from '../../services/device-service';
 import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 // import io from '../../services/socket';
 const DeviceUpdate = () => {
@@ -10,18 +14,41 @@ const DeviceUpdate = () => {
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
   const [data, setData] = useState([]);
-  const [alias, setName] = useState(); // use `undefined` value
+  const [alias, setAlias] = useState(); // use `undefined` value
+  const [kind, setKind] = useState(); // use `undefined` value
+  const [port, setPort] = useState(); // use `undefined` value
+  const [status, setStatus] = useState(); // use `undefined` value
+  const [settings, setSettings] = useState(); // use `undefined` value
 
-  function handleChange(event) {
-    setName(event.target.value);
+  function handleChangeAlias(event) {
+    setAlias(event.target.value);
   }
-  // let data;
+
+  function handleChangeKind(event) {
+    setKind(event.target.value);
+  }
+
+  function handleChangePort(event) {
+    setPort(event.target.value);
+  }
+
+  function handleChangeStatus(event) {
+    setStatus(event.target.value);
+  }
+
+  function handleChangeSettings(event) {
+    setSettings(event.target.value);
+  }
   const handleResponse = (body, JWR) => {
     console.log('body ', body);
     if (JWR.statusCode === 200) {
       // data = body;
       setData(body);
-      setName(body.alias);
+      setAlias(body.alias);
+      setKind(body.kind);
+      setPort(body.port);
+      setStatus(body.status);
+      setSettings(body.settings);
       console.log('hr getDevice ', body);
       // return body;
       //     // setState({creating: false});
@@ -55,14 +82,15 @@ const DeviceUpdate = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     const status = {};
     const attributes = {
-      alias: data.alias,
-      kind: data.kind,
-      port: data.port,
-      status: {},
-      settings: data.settings,
+      id: id,
+      alias: alias,
+      kind: kind,
+      port: port,
+      status: status,
+      settings: settings,
     };
     updateDevice(attributes);
   };
@@ -98,7 +126,7 @@ const DeviceUpdate = () => {
                     type="text"
                     placeholder="Alias"
                     value={alias}
-                    onChange={handleChange}
+                    onChange={handleChangeAlias}
                     // {...register('alias', { required: true })}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
@@ -111,17 +139,18 @@ const DeviceUpdate = () => {
                   {/* <input
                     type="text"
                     placeholder="Kind"
-                    {...register('kind', { required: true })}
+                    /{...register('kind', { required: true })}
                     className="w-full rounded-lg border-[1.5px] border-primary bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input dark:text-white"
                   /> */}
                   <select
                     placeholder="Kind"
-                    // {...register('kind', { required: true })}
-                    value={data.kind ? data.kind : selectedOption}
-                    onChange={(e) => {
-                      setSelectedOption(e.target.value);
-                      changeTextColor();
-                    }}
+                    {...register('kind', { required: true })}
+                    value={kind ? kind : selectedOption}
+                    onChange={handleChangeKind}
+                    // onChange={(e) => {
+                    //   setSelectedOption(e.target.value);
+                    //   changeTextColor();
+                    // }}
                     className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input ${
                       isOptionSelected ? 'text-black dark:text-white' : ''
                     }`}
@@ -155,7 +184,8 @@ const DeviceUpdate = () => {
                   <input
                     type="text"
                     placeholder="Port"
-                    value={data.port}
+                    value={port}
+                    onChange={handleChangePort}
                     // {...register('port', { required: true })}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
                   />
@@ -168,7 +198,8 @@ const DeviceUpdate = () => {
                   <input
                     type="text"
                     placeholder="Status"
-                    value={JSON.stringify(data.status)}
+                    value={JSON.stringify(status)}
+                    onChange={handleChangeStatus}
                     // {...register('status', { required: true })}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
                   />
@@ -193,7 +224,8 @@ const DeviceUpdate = () => {
                   <textarea
                     rows={6}
                     placeholder="Active textarea"
-                    value={JSON.stringify(data.settings)}
+                    value={JSON.stringify(settings)}
+                    onChange={handleChangeSettings}
                     // {...register('settings', { required: true })}
                     className="w-full rounded-lg border-[1.5px] border-primary bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input dark:text-white"
                   ></textarea>

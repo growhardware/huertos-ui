@@ -25,11 +25,11 @@ export const getDevice = async (id, handleResponse) => {
   return await io.socket.request(reqOptions, handleResponse);
 };
 
-export const putDevice = (id, attributes, cb) => {
+export const putDevice = async (id, attributes, cb) => {
   // const { id } = attributes;
   const reqOptions = {
-    method: 'patch',
-    url: `/device/676233f58657a4da81684e6e`,
+    method: 'put',
+    url: `/device/${id}`,
     data: {
       alias: attributes.alias,
       kind: attributes.kind,
@@ -39,7 +39,21 @@ export const putDevice = (id, attributes, cb) => {
     headers: {},
   };
   console.log('reqOptions ', reqOptions);
-  io.socket.request(reqOptions, cb);
+  return await io.socket.request(reqOptions, cb);
+  // io.socket.post('device', attributes, cb);
+};
+
+export const patchDevice = async (id, attributes, cb) => {
+  // const { id } = attributes;
+  const data = {
+    alias: attributes.alias,
+    kind: attributes.kind,
+    port: attributes.port,
+    // status: { test: 'test' } || {},
+  };
+
+  // console.log('reqOptions ', reqOptions);
+  return await io.socket.patch(`/device/${id}`, data, cb);
   // io.socket.post('device', attributes, cb);
 };
 
@@ -69,16 +83,28 @@ export const createDevice = (msg) => {
 };
 
 export const updateDevice = (msg) => {
+  console.log('msg .... ', msg);
   const attributes = {
     alias: msg.alias,
     kind: msg.kind,
     port: msg.port,
-    status: {},
-    settings: {},
+    // status: {},
+    // settings: {},
   };
-  // putDevice(attributes, handleResponse);
-  postDevice(attributes, handleResponse);
+  // putDevice(msg.id, attributes, handleResponse);
+  patchDevice(msg.id, attributes, handleResponse);
+  // postDevice(attributes, handleResponse);
   // event.preventDefault();
+};
+
+export const deleteDevice = async (id) => {
+  const reqOptions = {
+    method: 'delete',
+    url: `/device/${id}`,
+    headers: {},
+  };
+  console.log('reqOptions ', reqOptions);
+  return await io.socket.request(reqOptions, handleResponse);
 };
 
 export const getDevices = async () => {

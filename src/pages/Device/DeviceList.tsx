@@ -7,8 +7,13 @@ import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 // import { getDevices } from '../services/device-service';
 import io from '../../services/socket';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
+import { DeleteModal } from '../../components/Modals/DeleteModal';
 
 const Devices = () => {
+  // const [show, setShow] = useState<boolean>(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
+
   const [data, setData] = useState([]);
   // let data;
   const handleResponse = (body, JWR) => {
@@ -34,10 +39,9 @@ const Devices = () => {
     return await io.socket.request(reqOptions, handleResponse);
   };
 
-  // getDevices();
-
-  // const [data, setData] = useState([]);
-  // const [data, setData] = useState(null);
+  const mostrarModal = () => {
+    console.log('el id ', id);
+  };
   useEffect(() => {
     async function fetchData() {
       try {
@@ -50,6 +54,12 @@ const Devices = () => {
   }, []);
   return (
     <>
+      {/* <div onClick={() => setShow(true)}>showModal: {JSON.stringify(show)}</div>
+      <DeleteModal
+        showModal={show}
+        // handleShow={handleShow}
+        // handleClose={handleClose}
+      ></DeleteModal> */}
       <Breadcrumb pageName="Devices" />
       {/* start go to create device */}
       <Link
@@ -59,7 +69,6 @@ const Devices = () => {
         <DevicesSvg></DevicesSvg>
         Create
       </Link>
-
       {data.map((row: any, idx: number) => {
         return (
           <tr key={idx} className="content-center">
@@ -99,9 +108,8 @@ const Devices = () => {
               <span className="actions flex grid-cols-2 gap-4">
                 <BsFillTrashFill
                   className="delete-btn cursor-pointer"
-                  onClick={() => deleteRow(idx)}
+                  onClick={() => handleShow()}
                 />
-
                 <BsFillPencilFill
                   className="edit-btn cursor-pointer"
                   onClick={() => editRow(idx)}
@@ -111,7 +119,6 @@ const Devices = () => {
           </tr>
         );
       })}
-
       {/* end create device */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         {data.map((row: any, idx: number) => {
@@ -121,6 +128,7 @@ const Devices = () => {
               total={row.alias}
               id={row.id}
               levelUp
+              levelDown
             >
               <svg
                 className="fill-primary dark:fill-white"
