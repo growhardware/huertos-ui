@@ -1,170 +1,15 @@
-// export const DeleteModal = () => {
-//   return (
-//     <>
-//       <button
-//         type="button"
-//         classNameName="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-//         data-twe-toggle="modal"
-//         data-twe-target="#exampleModal"
-//         data-twe-ripple-init
-//         data-twe-ripple-color="light"
-//       >
-//         Launch demo modal
-//       </button>
+import { deleteDevice } from '../../services/device-service';
 
-//       <div
-//         data-twe-modal-init
-//         classNameName="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
-//         id="exampleModal"
-//         tabIndex="-1"
-//         aria-labelledby="exampleModalLabel"
-//         aria-hidden="true"
-//       >
-//         <div
-//           data-twe-modal-dialog-ref
-//           classNameName="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px]"
-//         >
-//           <div classNameName="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-4 outline-none dark:bg-surface-dark">
-//             <div classNameName="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 p-4 dark:border-white/10">
-//               <h5
-//                 classNameName="text-xl font-medium leading-normal text-surface dark:text-white"
-//                 id="exampleModalLabel"
-//               >
-//                 Modal title
-//               </h5>
-//               <button
-//                 type="button"
-//                 classNameName="box-content rounded-none border-none text-neutral-500 hover:text-neutral-800 hover:no-underline focus:text-neutral-800 focus:opacity-100 focus:shadow-none focus:outline-none dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300"
-//                 data-twe-modal-dismiss
-//                 aria-label="Close"
-//               >
-//                 <span classNameName="[&>svg]:h-6 [&>svg]:w-6">
-//                   <svg
-//                     xmlns="http://www.w3.org/2000/svg"
-//                     fill="currentColor"
-//                     viewBox="0 0 24 24"
-//                     stroke-width="1.5"
-//                     stroke="currentColor"
-//                   >
-//                     <path
-//                       stroke-linecap="round"
-//                       stroke-linejoin="round"
-//                       d="M6 18L18 6M6 6l12 12"
-//                     />
-//                   </svg>
-//                 </span>
-//               </button>
-//             </div>
-
-//             <div classNameName="relative flex-auto p-4" data-twe-modal-body-ref>
-//               Modal body text goes here.
-//             </div>
-
-//             <div classNameName="flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 p-4 dark:border-white/10">
-//               <button
-//                 type="button"
-//                 classNameName="inline-block rounded bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-200 focus:bg-primary-accent-200 focus:outline-none focus:ring-0 active:bg-primary-accent-200 dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:bg-primary-400 dark:active:bg-primary-400"
-//                 data-twe-modal-dismiss
-//                 data-twe-ripple-init
-//                 data-twe-ripple-color="light"
-//               >
-//                 Close
-//               </button>
-//               <button
-//                 type="button"
-//                 classNameName="ms-1 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-//                 data-twe-ripple-init
-//                 data-twe-ripple-color="light"
-//               >
-//                 Save changes
-//               </button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// const click = (display) => {
-//   document.getElementById('id01').style.display = display;
-// };
-// export const DeleteModal = () => {
-//   return (
-//     <>
-//       <button onClick={click('block')}>Open Modal</button>
-
-//       <div id="id01" className="modal">
-//         <span onClick={click('none')} className="close" title="Close Modal">
-//           &times;
-//         </span>
-//         <form className="modal-content">
-//           <div className="container">
-//             <h1>Delete Account</h1>
-//             <p>Are you sure you want to delete your account?</p>
-
-//             <div className="clearfix">
-//               <button type="button" className="cancelbtn">
-//                 Cancel
-//               </button>
-//               <button type="button" className="deletebtn">
-//                 Delete
-//               </button>
-//             </div>
-//           </div>
-//         </form>
-//       </div>
-//     </>
-//   );
-// };
-
-// export const DeleteModal = () => {
-//   return (
-//     // <main className="antialiased bg-gray-200 text-gray-900 font-sans overflow-x-hidden">
-//     <div className="relative px-4 min-h-screen md:flex md:items-center md:justify-center">
-//       <div className="bg-black opacity-25 w-full h-full absolute z-10 inset-0"></div>
-//       <div className="bg-white rounded-lg md:max-w-md md:mx-auto p-4 fixed inset-x-0 bottom-0 z-50 mb-4 mx-4 md:relative">
-//         <div className="md:flex items-center">
-//           <div className="rounded-full border border-gray-300 flex items-center justify-center w-16 h-16 flex-shrink-0 mx-auto">
-//             <i className="bx bx-error text-3xl"></i>
-//           </div>
-//           <div className="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
-//             <p className="font-bold">Delete your account</p>
-//             <p className="text-sm text-gray-700 mt-1">
-//               You will lose all of your data by deleting your account. This
-//               action cannot be undone.
-//             </p>
-//           </div>
-//         </div>
-//         <div className="text-center md:text-right mt-4 md:flex md:justify-end">
-//           <button className="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-red-200 text-red-700 rounded-lg font-semibold text-sm md:ml-2 md:order-2">
-//             Delete Account
-//           </button>
-//           <button
-//             className="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-gray-200 rounded-lg font-semibold text-sm mt-4
-//           md:mt-0 md:order-1"
-//           >
-//             Cancel
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//     // </main>
-//   );
-// };
-
-// import { useState } from 'react';
-// export const DeleteModal = (showModal, handleShow, handleClose): JSX.Element => {
-import { useState } from 'react';
-
-interface ChildProps {
+interface Props {
   showModal: boolean;
   toogleShowModal: () => void;
+  idDevice: string;
 }
 
-export const DeleteModal: React.FC<ChildProps> = ({
+export const DeleteModal: React.FC<Props> = ({
   showModal,
   toogleShowModal,
+  idDevice,
 }) => {
   // if (showModal?.showModal && show) {
   if (showModal) {
@@ -218,6 +63,10 @@ export const DeleteModal: React.FC<ChildProps> = ({
             <button
               type="button"
               className="px-4 py-2 rounded-lg text-white text-sm tracking-wide bg-red-500 hover:bg-red-600 active:bg-red-500"
+              onClick={() => {
+                deleteDevice(idDevice);
+                toogleShowModal();
+              }}
             >
               Delete
             </button>

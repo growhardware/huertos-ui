@@ -7,24 +7,13 @@ import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 // import { getDevices } from '../services/device-service';
 import io from '../../services/socket';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
-import { DeleteModal } from '../../components/Modals/DeleteModal';
 
 const Devices = () => {
-  // const [show, setShow] = useState<boolean>(false);
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
-
   const [data, setData] = useState([]);
-  // let data;
   const handleResponse = (body, JWR) => {
     console.log('body ', body);
     if (JWR.statusCode === 200) {
-      // data = body;
       setData(body);
-      console.log('hr getDevices ', body);
-      // return body;
-      //     // setState({creating: false});
-      //     // props.onCreated();
     } else {
       console.log('Error: ', JWR);
     }
@@ -39,9 +28,6 @@ const Devices = () => {
     return await io.socket.request(reqOptions, handleResponse);
   };
 
-  const mostrarModal = () => {
-    console.log('el id ', id);
-  };
   useEffect(() => {
     async function fetchData() {
       try {
@@ -54,12 +40,6 @@ const Devices = () => {
   }, []);
   return (
     <>
-      {/* <div onClick={() => setShow(true)}>showModal: {JSON.stringify(show)}</div>
-      <DeleteModal
-        showModal={show}
-        // handleShow={handleShow}
-        // handleClose={handleClose}
-      ></DeleteModal> */}
       <Breadcrumb pageName="Devices" />
       {/* start go to create device */}
       <Link

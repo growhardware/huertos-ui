@@ -4,9 +4,12 @@ import { useForm } from 'react-hook-form';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { createDevice } from '../../services/device-service';
 import { DevicesSvg } from '../../components/Svg/DevicesSvg';
+import { useNavigate } from 'react-router-dom';
+
 const DevicesCreate = () => {
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const changeTextColor = () => {
     setIsOptionSelected(true);
@@ -27,6 +30,7 @@ const DevicesCreate = () => {
       settings: data.settings,
     };
     createDevice(attributes);
+    navigate(`/devices/`, { replace: true });
   };
   return (
     <>

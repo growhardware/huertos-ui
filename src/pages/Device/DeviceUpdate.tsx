@@ -8,6 +8,7 @@ import {
   deleteDevice,
 } from '../../services/device-service';
 import { DevicesSvg } from '../../components/Svg/DevicesSvg';
+import { useNavigate } from 'react-router-dom';
 // import io from '../../services/socket';
 const DeviceUpdate = () => {
   const { id } = useParams();
@@ -19,6 +20,7 @@ const DeviceUpdate = () => {
   const [port, setPort] = useState(); // use `undefined` value
   const [status, setStatus] = useState(); // use `undefined` value
   const [settings, setSettings] = useState(); // use `undefined` value
+  const navigate = useNavigate();
 
   function handleChangeAlias(event) {
     setAlias(event.target.value);
@@ -93,6 +95,7 @@ const DeviceUpdate = () => {
       settings: settings,
     };
     updateDevice(attributes);
+    navigate(`/devices/`, { replace: true });
   };
   return (
     <>
