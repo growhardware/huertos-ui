@@ -133,7 +133,8 @@ export const getDevices = async () => {
   }
   const reqOptions = {
     method: 'get',
-    url: '/device',
+    // url: '/device',
+    url: '/device/get-my-devices',
     headers: {},
   };
   const devices = await io.socket.request(reqOptions, cbGetDevices);

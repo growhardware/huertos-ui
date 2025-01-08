@@ -160,6 +160,7 @@ export const DeleteModal = (showModal: boolean, handleClose) => {
   // export const DeleteModal = (showModal: boolean, { handleClose }) => {
   console.log('the show modal ', JSON.stringify(showModal));
   console.log('the show modal 2 ', showModal?.showModal);
+  console.log('the handleClose ', handleClose);
   const closeModal = () => {
     setShow(false);
   };
