@@ -156,17 +156,18 @@
 // import { useState } from 'react';
 // export const DeleteModal = (showModal, handleShow, handleClose): JSX.Element => {
 import { useState } from 'react';
-export const DeleteModal = (showModal: boolean, handleClose) => {
-  // export const DeleteModal = (showModal: boolean, { handleClose }) => {
-  console.log('the show modal ', JSON.stringify(showModal));
-  console.log('the show modal 2 ', showModal?.showModal);
-  console.log('the handleClose ', handleClose);
-  const closeModal = () => {
-    setShow(false);
-  };
-  const [show, setShow] = useState<boolean>(true);
+
+interface ChildProps {
+  showModal: boolean;
+  toogleShowModal: () => void;
+}
+
+export const DeleteModal: React.FC<ChildProps> = ({
+  showModal,
+  toogleShowModal,
+}) => {
   // if (showModal?.showModal && show) {
-  if (showModal?.showModal) {
+  if (showModal) {
     return (
       <div className="fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]">
         <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6 relative">
@@ -174,7 +175,10 @@ export const DeleteModal = (showModal: boolean, handleClose) => {
             xmlns="http://www.w3.org/2000/svg"
             className="w-3 cursor-pointer shrink-0 fill-gray-400 hover:fill-red-500 float-right"
             viewBox="0 0 320.591 320.591"
-            onClick={handleClose}
+            // onClick={() => {
+            //   handleClose;
+            // }}
+            onClick={toogleShowModal}
           >
             <path
               d="M30.391 318.583a30.37 30.37 0 0 1-21.56-7.288c-11.774-11.844-11.774-30.973 0-42.817L266.643 10.665c12.246-11.459 31.462-10.822 42.921 1.424 10.362 11.074 10.966 28.095 1.414 39.875L51.647 311.295a30.366 30.366 0 0 1-21.256 7.288z"
@@ -220,6 +224,7 @@ export const DeleteModal = (showModal: boolean, handleClose) => {
             <button
               type="button"
               className="px-4 py-2 rounded-lg text-gray-800 text-sm tracking-wide bg-gray-200 hover:bg-gray-300 active:bg-gray-200"
+              onClick={toogleShowModal}
             >
               Cancel
             </button>

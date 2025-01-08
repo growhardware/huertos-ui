@@ -21,19 +21,20 @@ const CardDeviceStats: React.FC<CardDeviceStatsProps> = ({
   children,
 }) => {
   const navigate = useNavigate();
-  const [show, setShow] = useState<boolean>(false);
+  const [showModal, handleClose] = useState<boolean>(false);
 
-  const handleClose = () => {
-    console.log('llamo a close ');
-    setShow(false);
+  // A function to toggle the feature enabled state
+  const toogleShowModal = () => {
+    handleClose((prevState) => !prevState);
   };
+
   // const handleShow = () => setShow(true);
   return (
     <>
       {/* <div onClick={() => setShow(true)}>showModal: {JSON.stringify(show)}</div> */}
       <DeleteModal
-        showModal={show}
-        handleClose={handleClose}
+        showModal={showModal}
+        toogleShowModal={toogleShowModal}
         // handleShow={handleShow}
       ></DeleteModal>
       <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -46,7 +47,8 @@ const CardDeviceStats: React.FC<CardDeviceStatsProps> = ({
               <span className="actions flex grid-cols-2 gap-4">
                 <BsFillTrashFill
                   className="delete-btn cursor-pointer"
-                  onClick={() => setShow(true)}
+                  // onClick={() => setShow(true)}
+                  onClick={toogleShowModal}
                 />
                 <BsFillPencilFill
                   className="edit-btn cursor-pointer"
