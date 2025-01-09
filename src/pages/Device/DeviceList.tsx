@@ -9,34 +9,57 @@ import io from '../../services/socket';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 
 const Devices = () => {
-  const [data, setData] = useState([]);
-  const handleResponse = (body, JWR) => {
-    console.log('body ', body);
-    if (JWR.statusCode === 200) {
-      setData(body);
-    } else {
-      console.log('Error: ', JWR);
-    }
-  };
+  // const [data, setData] = useState([]);
+  const [devices, setDevices] = useState<any[]>([]);
+  // const handleResponse = (body, JWR) => {
+  //   console.log('body ', body);
+  //   if (JWR.statusCode === 200) {
+  //     setData(body);
+  //   } else {
+  //     console.log('Error: ', JWR);
+  //   }
+  // };
 
-  const getDevices = async () => {
-    const reqOptions = {
-      method: 'get',
-      url: '/device',
-      headers: {},
-    };
-    return await io.socket.request(reqOptions, handleResponse);
-  };
+  // const getDevices = async () => {
+  //   const reqOptions = {
+  //     method: 'get',
+  //     url: '/device',
+  //     headers: {},
+  //   };
+  //   return await io.socket.request(reqOptions, handleResponse);
+  // };
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       await getDevices();
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   }
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        await getDevices();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-    fetchData();
+    // Initialize the Sails socket.io client
+    // const io = sailsIOClient();
+
+    // Connect to the Sails.js server
+    io.socket.get('/device', (data: any) => {
+      // This runs when we first fetch the data (for example, on initial render)
+      setDevices(data);
+    });
+
+    // Listen for new "newPost" events broadcasted by the Sails server
+    io.socket.on('device', 'newDevice', (newDevice: any) => {
+      // When a new post is received, update the state
+      setDevices((prevDevices) => [...prevDevices, newDevice]);
+    });
+
+    // Cleanup the socket connection when the component is unmounted
+    return () => {
+      io.socket.off('device', 'newDevice');
+    };
   }, []);
   return (
     <>
@@ -49,7 +72,7 @@ const Devices = () => {
         <DevicesSvg></DevicesSvg>
         Create
       </Link>
-      {data.map((row: any, idx: number) => {
+      {devices.map((row: any, idx: number) => {
         return (
           <tr key={idx} className="content-center">
             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
@@ -101,7 +124,7 @@ const Devices = () => {
       })}
       {/* end create device */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-        {data.map((row: any, idx: number) => {
+        {devices.map((row: any, idx: number) => {
           return (
             <CardDeviceStats
               title={row.kind}
