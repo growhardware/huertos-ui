@@ -6,6 +6,7 @@ import CardDeviceStats from '../../components/Device/CardDeviceStats';
 import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 // import { getDevices } from '../services/device-service';
 import io from '../../services/socket';
+// import { useNavigate } from 'react-router-dom';
 import {
   BsFillTrashFill,
   BsFillPencilFill,
@@ -13,29 +14,15 @@ import {
 } from 'react-icons/bs';
 
 const Devices = () => {
-  // const [data, setData] = useState([]);
   const [devices, setDevices] = useState<any[]>([]);
 
-  const updateState = (newState) => {
-    setDevices(newState);
-  };
-
   useEffect(() => {
-    io.socket.get('/device', (data: any) => {
+    // user's devices
+    io.socket.get('/device/get-user-devices', (data: any) => {
       setDevices(data);
     });
     io.socket.on('device', function onDevice(deviceData) {
-      // alert('actualiza');
-      console.log('Device updated!', deviceData);
-      devices.map((v, i) => {
-        console.log('v i ', v, i, v.id == deviceData.id);
-        if (v.id == deviceData.id) {
-          return deviceData;
-        }
-      });
-      // setDevices((prevDevices) => [...prevDevices, deviceData]);
-      // setDevices([...devices]);
-      updateState([...devices]);
+      setDevices((prevDevices) => [...prevDevices, deviceData]);
     });
 
     // Cleanup the socket connection when the component is unmounted
