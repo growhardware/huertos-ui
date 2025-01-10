@@ -1,17 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Await, json, Link } from 'react-router-dom';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
-// import CardDeviceStats from '../../components/CardDeviceStats';
 import CardDeviceStats from '../../components/Device/CardDeviceStats';
 import { DevicesSvg } from '../../components/Svg/DevicesSvg';
-// import { getDevices } from '../services/device-service';
 import io from '../../services/socket';
-// import { useNavigate } from 'react-router-dom';
-import {
-  BsFillTrashFill,
-  BsFillPencilFill,
-  BsBoxArrowInDownLeft,
-} from 'react-icons/bs';
 
 const Devices = () => {
   const [devices, setDevices] = useState<any[]>([]);
@@ -42,56 +34,7 @@ const Devices = () => {
         <DevicesSvg></DevicesSvg>
         Create
       </Link>
-      {devices.map((row: any, idx: number) => {
-        return (
-          <tr key={idx} className="content-center">
-            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-              <span className={`label label-${row.para}`}>{row.kind}</span>
-            </td>
-            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-              {row.id}
-            </td>
-            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-              <span className={`label label-${row.para}`}>{row.alias}</span>
-            </td>
 
-            {/* <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-              <span>
-                {row.criterion == 0
-                  ? 'goes down by'
-                  : row.criterion == 1
-                  ? 'goes up by'
-                  : row.criterion == 2
-                  ? 'is smaller than'
-                  : row.criterion == 3
-                  ? 'is greater than'
-                  : 'is equal to'}
-              </span>
-            </td> */}
-            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-              {JSON.stringify(row.settings)}
-            </td>
-            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-              <span>
-                {row.type == 0 ? 'Info' : row.type == 1 ? 'Warning' : 'Alert'}
-              </span>
-            </td>
-
-            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-              <span className="actions flex grid-cols-2 gap-4">
-                <BsFillTrashFill
-                  className="delete-btn cursor-pointer"
-                  onClick={() => handleShow()}
-                />
-                <BsFillPencilFill
-                  className="edit-btn cursor-pointer"
-                  onClick={() => editRow(idx)}
-                />
-              </span>
-            </td>
-          </tr>
-        );
-      })}
       {/* end create device */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         {devices.map((row: any, idx: number) => {
