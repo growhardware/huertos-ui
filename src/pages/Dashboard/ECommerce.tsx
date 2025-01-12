@@ -13,7 +13,7 @@ const ECommerce: React.FC = () => {
   const { username } = useAuthContext();
   console.log(!username);
   if (!username) {
-    <Navigate to="/auth/signin" />;
+    return <Navigate to="/auth/signin" />;
   } else {
     return (
       <>
