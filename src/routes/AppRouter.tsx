@@ -165,7 +165,7 @@ function AppRouter() {
               }
             />
             <Route
-              path="/settings"
+              path="/plan"
               element={
                 <>
                   <PageTitle title="Settings | TailAdmin - Tailwind CSS Admin Dashboard Template" />

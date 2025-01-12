@@ -27,7 +27,7 @@ const DevicesCreate = () => {
       kind: data.kind,
       port: data.port,
       status: {},
-      settings: data.settings,
+      plan: data.plan,
     };
     createDevice(attributes);
     navigate(`/devices/`, { replace: true });
@@ -161,7 +161,7 @@ const DevicesCreate = () => {
                   <textarea
                     rows={6}
                     placeholder="Active textarea"
-                    {...register('settings', { required: true })}
+                    {...register('plan', { required: true })}
                     className="w-full rounded-lg border-[1.5px] border-primary bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input dark:text-white"
                   ></textarea>
                 </div>

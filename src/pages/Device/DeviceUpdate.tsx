@@ -19,7 +19,7 @@ const DeviceUpdate = () => {
   const [kind, setKind] = useState(); // use `undefined` value
   const [port, setPort] = useState(); // use `undefined` value
   const [status, setStatus] = useState(); // use `undefined` value
-  const [settings, setSettings] = useState(); // use `undefined` value
+  const [plan, setSettings] = useState(); // use `undefined` value
   const navigate = useNavigate();
 
   function handleChangeAlias(event) {
@@ -50,7 +50,7 @@ const DeviceUpdate = () => {
       setKind(body.kind);
       setPort(body.port);
       setStatus(body.status);
-      setSettings(body.settings);
+      setSettings(body.plan);
       console.log('hr getDevice ', body);
       // return body;
       //     // setState({creating: false});
@@ -92,7 +92,7 @@ const DeviceUpdate = () => {
       kind: kind,
       port: port,
       status: status,
-      settings: settings,
+      plan: plan,
     };
     updateDevice(attributes);
     navigate(`/devices/`, { replace: true });
@@ -227,9 +227,9 @@ const DeviceUpdate = () => {
                   <textarea
                     rows={6}
                     placeholder="Active textarea"
-                    value={JSON.stringify(settings)}
+                    value={JSON.stringify(plan)}
                     onChange={handleChangeSettings}
-                    // {...register('settings', { required: true })}
+                    // {...register('plan', { required: true })}
                     className="w-full rounded-lg border-[1.5px] border-primary bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input dark:text-white"
                   ></textarea>
                 </div>

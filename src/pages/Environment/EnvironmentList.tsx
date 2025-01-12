@@ -86,7 +86,7 @@ const Devices = () => {
               </span>
             </td> */}
             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-              {JSON.stringify(row.settings)}
+              {JSON.stringify(row.plan)}
             </td>
             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
               <span>

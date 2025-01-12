@@ -77,7 +77,7 @@ export const createDevice = (msg) => {
     kind: msg.kind,
     port: msg.port,
     status: {},
-    settings: {},
+    plan: {},
   };
   postDevice(attributes, handleResponse);
   // event.preventDefault();
@@ -90,7 +90,7 @@ export const updateDevice = (msg) => {
     kind: msg.kind,
     port: msg.port,
     // status: {},
-    // settings: {},
+    // plan: {},
   };
   // putDevice(msg.id, attributes, handleResponse);
   patchDevice(msg.id, attributes, handleResponse);
