@@ -16,7 +16,6 @@ const Devices = () => {
     // user's devices
     io.socket.get('/device/get-user-devices', (data: any) => {
       setDevices(data);
-      console.log('setdeivces ', data);
       if (data == 'Unauthorized') {
         auth.signout(setUsername(null));
         navigate(`/auth/signin`, { replace: true });
