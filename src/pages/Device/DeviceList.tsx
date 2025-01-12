@@ -4,14 +4,23 @@ import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import CardDeviceStats from '../../components/Device/CardDeviceStats';
 import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 import io from '../../services/socket';
+import { useNavigate } from 'react-router-dom';
+import { auth, useAuthContext } from '../../hooks/useAuthContext';
 
 const Devices = () => {
   const [devices, setDevices] = useState<any[]>([]);
+  const { username, setUsername } = useAuthContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // user's devices
     io.socket.get('/device/get-user-devices', (data: any) => {
       setDevices(data);
+      console.log('setdeivces ', data);
+      if (data == 'Unauthorized') {
+        auth.signout(setUsername(null));
+        navigate(`/auth/signin`, { replace: true });
+      }
     });
     io.socket.on('device', function onDevice(deviceData) {
       setDevices((prevDevices) => [...prevDevices, deviceData]);
