@@ -19,17 +19,24 @@ const DeviceUpdate = () => {
     plan: '',
   });
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDeviceData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleResponse = (body, JWR) => {
+    if (JWR.statusCode === 200) {
+      const { alias, kind, port, status, plan } = body;
+      setDeviceData({ alias, kind, port, status, plan });
+    } else {
+      console.log('Error: ', JWR);
+    }
+  };
+
   useEffect(() => {
     const fetchDevice = async () => {
       try {
-        const response = await getDevice(id, handleResponse);
-        console.log('RESPONSEEEEE ', response);
-        if (response.statusCode === 200) {
-          const { alias, kind, port, status, plan } = response.body;
-          setDeviceData({ alias, kind, port, status, plan });
-        } else {
-          console.error('Error fetching device:', response);
-        }
+        await getDevice(id, handleResponse);
       } catch (error) {
         console.error('Error fetching device:', error);
       }
@@ -37,36 +44,6 @@ const DeviceUpdate = () => {
 
     fetchDevice();
   }, [id]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setDeviceData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleResponse = (body, JWR) => {
-    console.log('body ', body);
-    if (JWR.statusCode === 200) {
-      const { alias, kind, port, status, plan } = body;
-      setDeviceData({ alias, kind, port, status, plan });
-      console.log('hr getDevice ', body);
-    } else {
-      console.log('Error: ', JWR);
-    }
-  };
-
-  // const hChange = (e) => {
-  //   data.alias = e.target.value;
-  // };
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       await getDevice(id, handleResponse);
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
 
   const {
     register,
