@@ -325,21 +325,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Specimens
                 </NavLink>
               </li>
-              {/* <!-- End Menu Item Farms --> */}
-              {/* <!-- Menu Item Specimens --> */}
-              <li>
-                <NavLink
-                  to="/specimens"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes('specimens') &&
-                    'bg-graydark dark:bg-meta-4'
-                  }`}
-                >
-                  {/* svg generated on https://www.svgrepo.com/svg/272343/beetle?edit=true , with line color value: deddda*/}
-                  <DevicesSvg></DevicesSvg>
-                  Specimens
-                </NavLink>
-              </li>
               {/* <!-- End Menu Item Specimens --> */}
               {/* <!-- Menu Item Strains --> */}
               <li>
