@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Await, json, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import CardDeviceStats from '../../components/Device/CardDeviceStats';
 import { DevicesSvg } from '../../components/Svg/DevicesSvg';
@@ -36,7 +36,7 @@ const Devices = () => {
       <Breadcrumb pageName="Devices" />
       {/* start go to create device */}
       <Link
-        to="/devices/create"
+        to="/device/create"
         className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
       >
         <DevicesSvg></DevicesSvg>
