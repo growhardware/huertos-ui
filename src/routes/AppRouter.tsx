@@ -17,7 +17,7 @@ import DefaultLayout from '../layout/DefaultLayout';
 import Devices from '../pages/Device/DeviceList';
 import DevicesCreate from '../pages/Device/DeviceCreate';
 import DevicesUpdate from '../pages/Device/DeviceUpdate';
-import Environment from '../pages/Environment/EnvironmentList';
+import Environments from '../pages/Environment/EnvironmentList';
 import EnvironmentCreate from '../pages/Environment/EnvironmentCreate';
 import { useAuthContext } from '../hooks/useAuthContext';
 
@@ -93,7 +93,7 @@ function AppRouter() {
               }
             />
             <Route
-              path="/devices/create"
+              path="/device/create"
               element={
                 <>
                   <PageTitle title="Devices Create | GrowHardware" />
@@ -102,7 +102,7 @@ function AppRouter() {
               }
             />
             <Route
-              path="/devices/update/:id"
+              path="/device/update/:id"
               element={
                 <>
                   <PageTitle title="Device Update | GrowHardware" />
@@ -114,8 +114,8 @@ function AppRouter() {
               path="/environments"
               element={
                 <>
-                  <PageTitle title="Environment | GrowHardware" />
-                  <Environment />
+                  <PageTitle title="Environments | GrowHardware" />
+                  <Environments />
                 </>
               }
             />

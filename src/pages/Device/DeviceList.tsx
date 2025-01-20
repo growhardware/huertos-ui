@@ -21,7 +21,7 @@ const Devices = () => {
         navigate(`/auth/signin`, { replace: true });
       }
     });
-    io.socket.on('device', function onDevice(deviceData) {
+    io.socket.on('device', function onDevice(deviceData: any) {
       setDevices((prevDevices) => [...prevDevices, deviceData]);
     });
 

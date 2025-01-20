@@ -254,6 +254,20 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </NavLink>
               </li>
               {/* <!-- Menu Item Profile --> */}
+              {/* <!-- Menu Item Batchs --> */}
+              <li>
+                <NavLink
+                  to="/batchs"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes('batchs') && 'bg-graydark dark:bg-meta-4'
+                  }`}
+                >
+                  {/* svg generated on https://www.svgrepo.com/svg/272343/beetle?edit=true , with line color value: deddda*/}
+                  <DevicesSvg></DevicesSvg>
+                  Batchs
+                </NavLink>
+              </li>
+              {/* <!-- End Menu Item Batchs --> */}
               {/* <!-- Menu Item Devices --> */}
               <li>
                 <NavLink
@@ -267,7 +281,80 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Devices
                 </NavLink>
               </li>
-              {/* <!-- Menu Item Devices --> */}
+              {/* <!-- End Menu Item Devices --> */}
+              {/* <!-- Menu Item Environments --> */}
+              <li>
+                <NavLink
+                  to="/environments"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes('environments') &&
+                    'bg-graydark dark:bg-meta-4'
+                  }`}
+                >
+                  {/* svg generated on https://www.svgrepo.com/svg/272343/beetle?edit=true , with line color value: deddda*/}
+                  <DevicesSvg></DevicesSvg>
+                  Environments
+                </NavLink>
+              </li>
+              {/* <!-- End Menu Item Environments --> */}
+              {/* <!-- Menu Item Farms --> */}
+              <li>
+                <NavLink
+                  to="/farms"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes('farms') && 'bg-graydark dark:bg-meta-4'
+                  }`}
+                >
+                  {/* svg generated on https://www.svgrepo.com/svg/272343/beetle?edit=true , with line color value: deddda*/}
+                  <DevicesSvg></DevicesSvg>
+                  Farms
+                </NavLink>
+              </li>
+              {/* <!-- End Menu Item Farms --> */}
+              {/* <!-- Menu Item Specimens --> */}
+              <li>
+                <NavLink
+                  to="/specimens"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes('specimens') &&
+                    'bg-graydark dark:bg-meta-4'
+                  }`}
+                >
+                  {/* svg generated on https://www.svgrepo.com/svg/272343/beetle?edit=true , with line color value: deddda*/}
+                  <DevicesSvg></DevicesSvg>
+                  Specimens
+                </NavLink>
+              </li>
+              {/* <!-- End Menu Item Farms --> */}
+              {/* <!-- Menu Item Specimens --> */}
+              <li>
+                <NavLink
+                  to="/specimens"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes('specimens') &&
+                    'bg-graydark dark:bg-meta-4'
+                  }`}
+                >
+                  {/* svg generated on https://www.svgrepo.com/svg/272343/beetle?edit=true , with line color value: deddda*/}
+                  <DevicesSvg></DevicesSvg>
+                  Specimens
+                </NavLink>
+              </li>
+              {/* <!-- End Menu Item Specimens --> */}
+              {/* <!-- Menu Item Strains --> */}
+              <li>
+                <NavLink
+                  to="/strains"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes('strains') && 'bg-graydark dark:bg-meta-4'
+                  }`}
+                >
+                  {/* svg generated on https://www.svgrepo.com/svg/272343/beetle?edit=true , with line color value: deddda*/}
+                  <DevicesSvg></DevicesSvg>
+                  Strains
+                </NavLink>
+              </li>
+              {/* <!-- End Menu Item Strains --> */}
               {/* <!-- Menu Item Forms --> */}
               <SidebarLinkGroup
                 activeCondition={

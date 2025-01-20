@@ -6,7 +6,7 @@ import { createDevice } from '../../services/device-service';
 import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 import { useNavigate } from 'react-router-dom';
 
-const DevicesCreate = () => {
+const DeviceCreate = () => {
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -182,4 +182,4 @@ const DevicesCreate = () => {
   );
 };
 
-export default DevicesCreate;
+export default DeviceCreate;

@@ -7,8 +7,22 @@ import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 import io from '../../services/socket';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 
-const Devices = () => {
+const Environments = () => {
   const [data, setData] = useState([]);
+  // getDevices();
+
+  // const [data, setData] = useState([]);
+  // const [data, setData] = useState(null);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        await getDevices();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, []);
   // let data;
   const handleResponse = (body, JWR) => {
     console.log('body ', body);
@@ -33,20 +47,6 @@ const Devices = () => {
     return await io.socket.request(reqOptions, handleResponse);
   };
 
-  // getDevices();
-
-  // const [data, setData] = useState([]);
-  // const [data, setData] = useState(null);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        await getDevices();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-    fetchData();
-  }, []);
   return (
     <>
       <Breadcrumb pageName="Devices" />
@@ -219,4 +219,4 @@ const Devices = () => {
   );
 };
 
-export default Devices;
+export default Environments;

@@ -54,7 +54,7 @@ const CardDeviceStats: React.FC<CardDeviceStatsProps> = ({
                 <BsFillPencilFill
                   className="edit-btn cursor-pointer"
                   onClick={() => {
-                    navigate(`/devices/update/${id}`, { replace: true }); // <-- redirect
+                    navigate(`/device/update/${id}`, { replace: true }); // <-- redirect
                   }}
                 />
               </span>
