@@ -17,8 +17,8 @@ const StrainCreate = () => {
   } = useForm({
     defaultValues: {
       name: 'Unnamed strain', // Default value for the 'name' field
-      provider: 'Unknown provider', // Default value for the 'provider' field
-      provenance: 'Unknown provenance', // Default value for the 'provenance' field
+      provider: 'unknown', // Default value for the 'provider' field
+      provenance: 'unknown', // Default value for the 'provenance' field
     },
   });
 
@@ -49,6 +49,9 @@ const StrainCreate = () => {
 
     fetchUserInfo();
   }, [userId]);
+
+  // Whitelist for provenance field
+  const provenanceWhitelist = ['bank', 'sharing', 'wild', 'unknown'];
 
   return (
     <>
@@ -91,18 +94,23 @@ const StrainCreate = () => {
                   )}
                 </div>
 
-                {/* Provider Field */}
+                {/* Provider Field (Textarea) */}
                 <div>
                   <label className="mb-3 block text-black dark:text-white">
                     Provider
                   </label>
-                  <input
-                    type="text"
+                  <textarea
                     placeholder="Provider"
                     {...register('provider', {
                       required: 'Provider is required',
+                      maxLength: {
+                        value: 150,
+                        message: 'Provider should not exceed 150 characters',
+                      },
                     })}
+                    defaultValue="unknown"
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    maxLength="150"
                   />
                   {errors.provider && (
                     <p className="text-red-500 text-sm mt-1">
@@ -111,19 +119,25 @@ const StrainCreate = () => {
                   )}
                 </div>
 
-                {/* Provenance Field */}
+                {/* Provenance Field (Select Dropdown) */}
                 <div>
                   <label className="mb-3 block text-black dark:text-white">
                     Provenance
                   </label>
-                  <input
-                    type="text"
-                    placeholder="Provenance"
+                  <select
                     {...register('provenance', {
                       required: 'Provenance is required',
                     })}
+                    defaultValue="unknown" // Set "unknown" as the default value
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
+                  >
+                    {provenanceWhitelist.map((provenanceValue) => (
+                      <option key={provenanceValue} value={provenanceValue}>
+                        {provenanceValue.charAt(0).toUpperCase() +
+                          provenanceValue.slice(1)}
+                      </option>
+                    ))}
+                  </select>
                   {errors.provenance && (
                     <p className="text-red-500 text-sm mt-1">
                       {errors.provenance.message}

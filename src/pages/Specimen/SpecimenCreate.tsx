@@ -17,7 +17,7 @@ const SpecimenCreate = () => {
   } = useForm({
     defaultValues: {
       name: 'Unnamed batch', // Default value for the 'name' field
-      birth: 'Unknown birth', // Default value for the 'birth' field
+      birth: 'unknown', // Default value for the 'birth' field
     },
   });
 
@@ -48,6 +48,16 @@ const SpecimenCreate = () => {
 
     fetchUserInfo();
   }, [userId]);
+
+  // Whitelist of acceptable birth values
+  const birthWhitelist = [
+    'germination',
+    'propagation',
+    'micro-propagation',
+    'migration',
+    'wild',
+    'unknown',
+  ];
 
   return (
     <>
@@ -90,19 +100,25 @@ const SpecimenCreate = () => {
                   )}
                 </div>
 
-                {/* Birth Field */}
+                {/* Birth Field with Select Dropdown */}
                 <div>
                   <label className="mb-3 block text-black dark:text-white">
                     Birth
                   </label>
-                  <input
-                    type="text"
-                    placeholder="Birth"
+                  <select
                     {...register('birth', {
                       required: 'Birth is required',
                     })}
+                    defaultValue="unknown" // Set "unknown" as the default value
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
+                  >
+                    {birthWhitelist.map((birthValue) => (
+                      <option key={birthValue} value={birthValue}>
+                        {birthValue.charAt(0).toUpperCase() +
+                          birthValue.slice(1)}
+                      </option>
+                    ))}
+                  </select>
                   {errors.birth && (
                     <p className="text-red-500 text-sm mt-1">
                       {errors.birth.message}
