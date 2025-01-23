@@ -6,40 +6,57 @@ import io from '../../services/socket';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import { auth, useAuthContext } from '../../hooks/useAuthContext';
 
-const Environments = () => {
-  const [environments, setEnvironments] = useState<any[]>([]);
+const Batchs = () => {
+  const [batchs, setBatchs] = useState<any[]>([]);
   const { username, setUsername } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // user's environments
-    io.socket.get('/environment/get-user-environments', (data: any) => {
-      setEnvironments(data);
+    io.socket.get('/batch/get-user-batchs', (data: any) => {
+      setBatchs(data);
       if (data == 'Unauthorized') {
         auth.signout(setUsername(null));
         navigate(`/auth/signin`, { replace: true });
       }
     });
-    io.socket.on('environment', function onDevice(environmentData: any) {
-      setEnvironments((prevDevices) => [...prevDevices, environmentData]);
+
+    io.socket.on('batch', function onDevice(batchData: any) {
+      setBatchs((prevDevices) => [...prevDevices, batchData]);
     });
 
     // Cleanup the socket connection when the component is unmounted
     return () => {
-      io.socket.off('environment');
-      // io.socket.off('environment', 'newDevice', 'updatedDevice');
+      io.socket.off('batch');
     };
   }, []);
 
+  // Handle edit and delete actions
+  const editRow = (idx: number) => {
+    const batchToEdit = batchs[idx];
+    navigate(`/batch/edit/${batchToEdit.id}`);
+  };
+
+  const deleteRow = (idx: number) => {
+    const batchToDelete = batchs[idx];
+    // Call API to delete the batch or handle deletion logic here
+    io.socket.delete(`/batch/${batchToDelete.id}`, (response: any) => {
+      if (response.status === 'success') {
+        setBatchs(batchs.filter((_, index) => index !== idx));
+      } else {
+        console.error('Error deleting batch');
+      }
+    });
+  };
+
   return (
     <>
-      <Breadcrumb pageName="Environments" />
-      {/* start go to create environment */}
+      <Breadcrumb pageName="Batchs" />
+      {/* start go to create batch */}
       <Link
-        to="/environment/create"
+        to="/batch/create"
         className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
       >
-        <DevicesSvg></DevicesSvg>
+        <DevicesSvg />
         Create
       </Link>
 
@@ -52,10 +69,19 @@ const Environments = () => {
             <th className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
               Volume
             </th>
+            <th className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
+              Nutrition History
+            </th>
+            <th className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
+              Irrigation History
+            </th>
+            <th className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
-          {environments.map((row, idx) => (
+          {batchs.map((row, idx) => (
             <tr key={idx} className="content-center">
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                 <span className={`label label-${row.para}`}>{row.name}</span>
@@ -64,12 +90,21 @@ const Environments = () => {
                 <span className={`label label-${row.para}`}>{row.volume}</span>
               </td>
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                <span className="actions flex grid-cols-2 gap-4">
+                <pre className="text-xs text-black dark:text-white">
+                  {JSON.stringify(row.nutritionHistory, null, 2)}
+                </pre>
+              </td>
+              <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                <pre className="text-xs text-black dark:text-white">
+                  {JSON.stringify(row.irrigationHistory, null, 2)}
+                </pre>
+              </td>
+              <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                <span className="actions flex gap-4">
                   <BsFillTrashFill
                     className="delete-btn cursor-pointer"
                     onClick={() => deleteRow(idx)}
                   />
-
                   <BsFillPencilFill
                     className="edit-btn cursor-pointer"
                     onClick={() => editRow(idx)}
@@ -84,4 +119,4 @@ const Environments = () => {
   );
 };
 
-export default Environments;
+export default Batchs;

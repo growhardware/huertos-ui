@@ -19,6 +19,8 @@ import DevicesCreate from '../pages/Device/DeviceCreate';
 import DevicesUpdate from '../pages/Device/DeviceUpdate';
 import Environments from '../pages/Environment/EnvironmentList';
 import EnvironmentCreate from '../pages/Environment/EnvironmentCreate';
+import Batchs from '../pages/Batch/BatchList';
+import BatchCreate from '../pages/Batch/BatchCreate';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 function AppRouter() {
@@ -125,6 +127,24 @@ function AppRouter() {
                 <>
                   <PageTitle title="Environment Create | GrowHardware" />
                   <EnvironmentCreate />
+                </>
+              }
+            />
+            <Route
+              path="/batchs"
+              element={
+                <>
+                  <PageTitle title="Batchs | GrowHardware" />
+                  <Batchs />
+                </>
+              }
+            />
+            <Route
+              path="/batch/create"
+              element={
+                <>
+                  <PageTitle title="Batch Create | GrowHardware" />
+                  <BatchCreate />
                 </>
               }
             />

@@ -6,37 +6,35 @@ import io from '../../services/socket';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import { auth, useAuthContext } from '../../hooks/useAuthContext';
 
-const Environments = () => {
-  const [environments, setEnvironments] = useState<any[]>([]);
+const Batchs = () => {
+  const [batchs, setBatchs] = useState<any[]>([]);
   const { username, setUsername } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // user's environments
-    io.socket.get('/environment/get-user-environments', (data: any) => {
-      setEnvironments(data);
+    io.socket.get('/batch/get-user-batchs', (data: any) => {
+      setBatchs(data);
       if (data == 'Unauthorized') {
         auth.signout(setUsername(null));
         navigate(`/auth/signin`, { replace: true });
       }
     });
-    io.socket.on('environment', function onDevice(environmentData: any) {
-      setEnvironments((prevDevices) => [...prevDevices, environmentData]);
+    io.socket.on('batch', function onDevice(batchData: any) {
+      setBatchs((prevDevices) => [...prevDevices, batchData]);
     });
 
     // Cleanup the socket connection when the component is unmounted
     return () => {
-      io.socket.off('environment');
-      // io.socket.off('environment', 'newDevice', 'updatedDevice');
+      io.socket.off('batch');
     };
   }, []);
 
   return (
     <>
-      <Breadcrumb pageName="Environments" />
-      {/* start go to create environment */}
+      <Breadcrumb pageName="Batchs" />
+      {/* start go to create batch */}
       <Link
-        to="/environment/create"
+        to="/batch/create"
         className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
       >
         <DevicesSvg></DevicesSvg>
@@ -55,7 +53,7 @@ const Environments = () => {
           </tr>
         </thead>
         <tbody>
-          {environments.map((row, idx) => (
+          {batchs.map((row, idx) => (
             <tr key={idx} className="content-center">
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                 <span className={`label label-${row.para}`}>{row.name}</span>
@@ -84,4 +82,4 @@ const Environments = () => {
   );
 };
 
-export default Environments;
+export default Batchs;
