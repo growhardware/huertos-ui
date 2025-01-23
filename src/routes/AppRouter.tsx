@@ -22,6 +22,12 @@ import EnvironmentCreate from '../pages/Environment/EnvironmentCreate';
 import Batchs from '../pages/Batch/BatchList';
 import BatchCreate from '../pages/Batch/BatchCreate';
 import { useAuthContext } from '../hooks/useAuthContext';
+import Farms from '../pages/Farm/FarmList';
+import FarmCreate from '../pages/Farm/FarmCreate';
+import Specimens from '../pages/Specimen/SpecimenList';
+import SpecimenCreate from '../pages/Specimen/SpecimenCreate';
+import Strains from '../pages/Strain/StrainList';
+import StrainCreate from '../pages/Strain/StrainCreate';
 
 function AppRouter() {
   const { username } = useAuthContext();
@@ -145,6 +151,60 @@ function AppRouter() {
                 <>
                   <PageTitle title="Batch Create | GrowHardware" />
                   <BatchCreate />
+                </>
+              }
+            />
+            <Route
+              path="/farms"
+              element={
+                <>
+                  <PageTitle title="Farms | GrowHardware" />
+                  <Farms />
+                </>
+              }
+            />
+            <Route
+              path="/farm/create"
+              element={
+                <>
+                  <PageTitle title="Farm Create | GrowHardware" />
+                  <FarmCreate />
+                </>
+              }
+            />
+            <Route
+              path="/specimens"
+              element={
+                <>
+                  <PageTitle title="Specimens | GrowHardware" />
+                  <Specimens />
+                </>
+              }
+            />
+            <Route
+              path="/specimen/create"
+              element={
+                <>
+                  <PageTitle title="Specimens Create | GrowHardware" />
+                  <SpecimenCreate />
+                </>
+              }
+            />
+            <Route
+              path="/strains"
+              element={
+                <>
+                  <PageTitle title="Strains | GrowHardware" />
+                  <Strains />
+                </>
+              }
+            />
+            <Route
+              path="/strain/create"
+              element={
+                <>
+                  <PageTitle title="Strains Create | GrowHardware" />
+                  <StrainCreate />
                 </>
               }
             />

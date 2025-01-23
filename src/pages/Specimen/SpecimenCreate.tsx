@@ -7,14 +7,20 @@ import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-const BatchCreate = () => {
-  const entity = 'batch';
+const SpecimenCreate = () => {
+  const entity = 'specimen';
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      name: 'Unnamed batch', // Default value for the 'name' field
+      birth: 'Unknown birth', // Default value for the 'birth' field
+    },
+  });
+
   const [userId, setUserId] = useState<string>('');
 
   const handleResponse = (body, JWR) => {
@@ -28,7 +34,7 @@ const BatchCreate = () => {
   const onSubmit = (formData) => {
     formData['user'] = userId;
     createEntity(entity, { ...formData });
-    navigate(`/batchs/`, { replace: true });
+    navigate(`/specimens/`, { replace: true });
   };
 
   useEffect(() => {
@@ -45,13 +51,13 @@ const BatchCreate = () => {
 
   return (
     <>
-      <Breadcrumb pageName="Create a batch" />
+      <Breadcrumb pageName="Create a specimen" />
       <Link
-        to="/batchs"
+        to="/specimens"
         className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
       >
         <DevicesSvg />
-        Batchs
+        Specimens
       </Link>
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
         <div className="flex flex-col gap-9">
@@ -64,6 +70,7 @@ const BatchCreate = () => {
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-5.5 p-6.5">
+                {/* Name Field */}
                 <div>
                   <label className="mb-3 block text-black dark:text-white">
                     Name
@@ -71,7 +78,9 @@ const BatchCreate = () => {
                   <input
                     type="text"
                     placeholder="Name"
-                    {...register('name', { required: 'Name is required' })}
+                    {...register('name', {
+                      required: 'Name is required',
+                    })}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
                   {errors.name && (
@@ -81,23 +90,27 @@ const BatchCreate = () => {
                   )}
                 </div>
 
+                {/* Birth Field */}
                 <div>
-                  <label className="mb-3 block font-medium text-black dark:text-white">
-                    Volume
+                  <label className="mb-3 block text-black dark:text-white">
+                    Birth
                   </label>
                   <input
-                    type="number"
-                    placeholder="Volume"
-                    {...register('volume', { required: 'Volume is required' })}
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
+                    type="text"
+                    placeholder="Birth"
+                    {...register('birth', {
+                      required: 'Birth is required',
+                    })}
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
-                  {errors.volume && (
+                  {errors.birth && (
                     <p className="text-red-500 text-sm mt-1">
-                      {errors.volume.message}
+                      {errors.birth.message}
                     </p>
                   )}
                 </div>
 
+                {/* Submit Button */}
                 <div className="mb-3">
                   <input
                     type="submit"
@@ -114,4 +127,4 @@ const BatchCreate = () => {
   );
 };
 
-export default BatchCreate;
+export default SpecimenCreate;

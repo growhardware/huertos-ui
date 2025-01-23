@@ -6,38 +6,57 @@ import io from '../../services/socket';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import { auth, useAuthContext } from '../../hooks/useAuthContext';
 
-const Batchs = () => {
-  const [batchs, setBatchs] = useState<any[]>([]);
+const Strains = () => {
+  const [strains, setStrains] = useState<any[]>([]);
   const { username, setUsername } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    io.socket.get('/batch/get-user-batchs', (data: any) => {
-      setBatchs(data);
-      if (data == 'Unauthorized') {
+    io.socket.get('/strain/get-user-strains', (data: any) => {
+      setStrains(data);
+      if (data === 'Unauthorized') {
         auth.signout(setUsername(null));
         navigate(`/auth/signin`, { replace: true });
       }
     });
-    io.socket.on('batch', function onDevice(batchData: any) {
-      setBatchs((prevDevices) => [...prevDevices, batchData]);
+
+    io.socket.on('strain', (strainData: any) => {
+      setStrains((prevStrains) => [...prevStrains, strainData]);
     });
 
     // Cleanup the socket connection when the component is unmounted
     return () => {
-      io.socket.off('batch');
+      io.socket.off('strain');
     };
   }, []);
 
+  // Handle edit and delete actions
+  const editRow = (idx: number) => {
+    const strainToEdit = strains[idx];
+    navigate(`/strain/edit/${strainToEdit.id}`);
+  };
+
+  const deleteRow = (idx: number) => {
+    const strainToDelete = strains[idx];
+    // Call API to delete the strain or handle deletion logic here
+    io.socket.delete(`/strain/${strainToDelete.id}`, (response: any) => {
+      if (response.status === 'success') {
+        setStrains(strains.filter((_, index) => index !== idx));
+      } else {
+        console.error('Error deleting strain');
+      }
+    });
+  };
+
   return (
     <>
-      <Breadcrumb pageName="Batchs" />
-      {/* start go to create batch */}
+      <Breadcrumb pageName="Strains" />
+      {/* start go to create strain */}
       <Link
-        to="/batch/create"
+        to="/strain/create"
         className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
       >
-        <DevicesSvg></DevicesSvg>
+        <DevicesSvg />
         Create
       </Link>
 
@@ -48,26 +67,34 @@ const Batchs = () => {
               Name
             </th>
             <th className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
-              Volume
+              Provider
+            </th>
+            <th className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
+              Provenance
+            </th>
+            <th className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
+              Actions
             </th>
           </tr>
         </thead>
         <tbody>
-          {batchs.map((row, idx) => (
+          {strains.map((row, idx) => (
             <tr key={idx} className="content-center">
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                 <span className={`label label-${row.para}`}>{row.name}</span>
               </td>
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                <span className={`label label-${row.para}`}>{row.volume}</span>
+                <span className="label">{row.provider}</span>
               </td>
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                <span className="actions flex grid-cols-2 gap-4">
+                <span className="label">{row.provenance}</span>
+              </td>
+              <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                <span className="actions flex gap-4">
                   <BsFillTrashFill
                     className="delete-btn cursor-pointer"
                     onClick={() => deleteRow(idx)}
                   />
-
                   <BsFillPencilFill
                     className="edit-btn cursor-pointer"
                     onClick={() => editRow(idx)}
@@ -82,4 +109,4 @@ const Batchs = () => {
   );
 };
 
-export default Batchs;
+export default Strains;
