@@ -32,3 +32,17 @@ export const signIn = (credentials, cb) => {
   };
   io.socket.request(loginReqOptions, cb);
 };
+
+export const getUserInfo = (handleResponse) => {
+  try {
+    console.log('getuserinfo ');
+    const reqOptions = {
+      method: 'get',
+      url: '/session/get-user-info',
+      headers: {},
+    };
+    io.socket.request(reqOptions, handleResponse);
+  } catch (e) {
+    console.log('error en getUserINfo ', e);
+  }
+};

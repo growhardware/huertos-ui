@@ -47,13 +47,13 @@ const Environments = () => {
         return (
           <tr key={idx} className="content-center">
             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-              <span className={`label label-${row.para}`}>{row.kind}</span>
+              <span className={`label label-${row.para}`}>{row.name}</span>
             </td>
             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
               {row.id}
             </td>
             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-              <span className={`label label-${row.para}`}>{row.alias}</span>
+              <span className={`label label-${row.para}`}>{row.volume}</span>
             </td>
 
             {/* <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
@@ -72,11 +72,11 @@ const Environments = () => {
             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
               {JSON.stringify(row.plan)}
             </td>
-            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+            {/* <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
               <span>
                 {row.type == 0 ? 'Info' : row.type == 1 ? 'Warning' : 'Alert'}
               </span>
-            </td>
+            </td> */}
 
             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
               <span className="actions flex grid-cols-2 gap-4">
