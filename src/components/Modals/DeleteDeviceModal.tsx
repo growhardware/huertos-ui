@@ -1,20 +1,24 @@
+// import {  } from '../../services/device-service';
+import { useNavigate } from 'react-router-dom';
+
 interface Props {
   showModal: boolean;
   toogleShowModal: () => void;
-  rowIdx: number;
-  deleteRow: (id: number) => void;
+  entityId: string;
+  deleteFunction: (id) => Promise<string>;
   entityName: string;
-  handleRefresh: (path: string) => void;
+  handleRefresh: () => void;
 }
 
-export const DeleteModal: React.FC<Props> = ({
+export const DeleteDeviceModal: React.FC<Props> = ({
   showModal,
   toogleShowModal,
-  rowIdx,
-  deleteRow,
+  entityId,
+  deleteFunction,
   entityName,
   handleRefresh,
 }) => {
+  const navigate = useNavigate();
   if (showModal) {
     return (
       <div className="fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]">
@@ -67,7 +71,7 @@ export const DeleteModal: React.FC<Props> = ({
               type="button"
               className="px-4 py-2 rounded-lg text-white text-sm tracking-wide bg-red-500 hover:bg-red-600 active:bg-red-500"
               onClick={() => {
-                deleteRow(rowIdx);
+                deleteFunction(entityId);
                 toogleShowModal();
                 handleRefresh();
               }}

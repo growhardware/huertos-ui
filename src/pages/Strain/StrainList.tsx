@@ -5,12 +5,18 @@ import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 import io from '../../services/socket';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import { auth, useAuthContext } from '../../hooks/useAuthContext';
+import { DeleteModal } from '../../components/Modals/DeleteModal';
+import { handleRefresh } from '../../utils/utils';
 
 const Strains = () => {
   const [strains, setStrains] = useState<any[]>([]);
   const { username, setUsername } = useAuthContext();
+  const [showModal, handleClose] = useState<boolean>(false);
   const navigate = useNavigate();
-
+  // A function to toggle the feature enabled state
+  const toogleShowModal = () => {
+    handleClose((prevState) => !prevState);
+  };
   useEffect(() => {
     io.socket.get('/strain/get-user-strains', (data: any) => {
       setStrains(data);
@@ -33,7 +39,7 @@ const Strains = () => {
   // Handle edit and delete actions
   const editRow = (idx: number) => {
     const strainToEdit = strains[idx];
-    navigate(`/strain/edit/${strainToEdit.id}`);
+    navigate(`/strain/update/${strainToEdit.id}`);
   };
 
   const deleteRow = (idx: number) => {
@@ -93,8 +99,16 @@ const Strains = () => {
                 <span className="actions flex gap-4">
                   <BsFillTrashFill
                     className="delete-btn cursor-pointer"
-                    onClick={() => deleteRow(idx)}
+                    onClick={toogleShowModal}
                   />
+                  <DeleteModal
+                    showModal={showModal}
+                    toogleShowModal={toogleShowModal}
+                    rowIdx={idx}
+                    deleteRow={deleteRow}
+                    entityName={'strains'}
+                    handleRefresh={() => handleRefresh('/strains')}
+                  ></DeleteModal>
                   <BsFillPencilFill
                     className="edit-btn cursor-pointer"
                     onClick={() => editRow(idx)}

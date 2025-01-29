@@ -11,6 +11,10 @@ const Devices = () => {
   const [devices, setDevices] = useState<any[]>([]);
   const { username, setUsername } = useAuthContext();
   const navigate = useNavigate();
+  const handleRefresh = () => {
+    // Navigate to the same route with a new state to trigger a re-render
+    navigate('/devices', { state: { refresh: true } });
+  };
 
   useEffect(() => {
     // user's devices
@@ -53,6 +57,7 @@ const Devices = () => {
               id={row.id}
               levelUp
               levelDown
+              handleRefresh={handleRefresh}
             >
               <svg
                 className="fill-primary dark:fill-white"

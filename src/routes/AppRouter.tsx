@@ -19,15 +19,20 @@ import DevicesCreate from '../pages/Device/DeviceCreate';
 import DevicesUpdate from '../pages/Device/DeviceUpdate';
 import Environments from '../pages/Environment/EnvironmentList';
 import EnvironmentCreate from '../pages/Environment/EnvironmentCreate';
+import EnvironmentUpdate from '../pages/Environment/EnvironmentUpdate';
 import Batchs from '../pages/Batch/BatchList';
 import BatchCreate from '../pages/Batch/BatchCreate';
+import BatchUpdate from '../pages/Batch/BatchUpdate';
 import { useAuthContext } from '../hooks/useAuthContext';
 import Farms from '../pages/Farm/FarmList';
 import FarmCreate from '../pages/Farm/FarmCreate';
+import FarmUpdate from '../pages/Farm/FarmUpdate';
 import Specimens from '../pages/Specimen/SpecimenList';
 import SpecimenCreate from '../pages/Specimen/SpecimenCreate';
+import SpecimenUpdate from '../pages/Specimen/SpecimenUpdate';
 import Strains from '../pages/Strain/StrainList';
 import StrainCreate from '../pages/Strain/StrainCreate';
+import StrainUpdate from '../pages/Strain/StrainUpdate';
 
 function AppRouter() {
   const { username } = useAuthContext();
@@ -137,6 +142,15 @@ function AppRouter() {
               }
             />
             <Route
+              path="/environment/update/:id"
+              element={
+                <>
+                  <PageTitle title="Environment Update | GrowHardware" />
+                  <EnvironmentUpdate />
+                </>
+              }
+            />
+            <Route
               path="/batchs"
               element={
                 <>
@@ -151,6 +165,15 @@ function AppRouter() {
                 <>
                   <PageTitle title="Batch Create | GrowHardware" />
                   <BatchCreate />
+                </>
+              }
+            />
+            <Route
+              path="/batch/update/:id"
+              element={
+                <>
+                  <PageTitle title="Batch Update | GrowHardware" />
+                  <BatchUpdate />
                 </>
               }
             />
@@ -173,6 +196,15 @@ function AppRouter() {
               }
             />
             <Route
+              path="/farm/update/:id"
+              element={
+                <>
+                  <PageTitle title="Farm Update | GrowHardware" />
+                  <FarmUpdate />
+                </>
+              }
+            />
+            <Route
               path="/specimens"
               element={
                 <>
@@ -191,6 +223,15 @@ function AppRouter() {
               }
             />
             <Route
+              path="/specimen/update/:id"
+              element={
+                <>
+                  <PageTitle title="Specimen Update | GrowHardware" />
+                  <SpecimenUpdate />
+                </>
+              }
+            />
+            <Route
               path="/strains"
               element={
                 <>
@@ -205,6 +246,15 @@ function AppRouter() {
                 <>
                   <PageTitle title="Strains Create | GrowHardware" />
                   <StrainCreate />
+                </>
+              }
+            />
+            <Route
+              path="/strain/update/:id"
+              element={
+                <>
+                  <PageTitle title="Strain Update | GrowHardware" />
+                  <StrainUpdate />
                 </>
               }
             />

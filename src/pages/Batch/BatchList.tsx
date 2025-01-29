@@ -5,11 +5,18 @@ import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 import io from '../../services/socket';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import { auth, useAuthContext } from '../../hooks/useAuthContext';
+import { DeleteModal } from '../../components/Modals/DeleteModal';
+import { handleRefresh } from '../../utils/utils';
 
 const Batchs = () => {
   const [batchs, setBatchs] = useState<any[]>([]);
   const { username, setUsername } = useAuthContext();
   const navigate = useNavigate();
+  const [showModal, handleClose] = useState<boolean>(false);
+  // A function to toggle the feature enabled state
+  const toogleShowModal = () => {
+    handleClose((prevState) => !prevState);
+  };
 
   useEffect(() => {
     io.socket.get('/batch/get-user-batchs', (data: any) => {
@@ -33,14 +40,14 @@ const Batchs = () => {
   // Handle edit and delete actions
   const editRow = (idx: number) => {
     const batchToEdit = batchs[idx];
-    navigate(`/batch/edit/${batchToEdit.id}`);
+    navigate(`/batch/update/${batchToEdit.id}`);
   };
 
   const deleteRow = (idx: number) => {
     const batchToDelete = batchs[idx];
     // Call API to delete the batch or handle deletion logic here
     io.socket.delete(`/batch/${batchToDelete.id}`, (response: any) => {
-      if (response.status === 'success') {
+      if (response.id === batchToDelete.id) {
         setBatchs(batchs.filter((_, index) => index !== idx));
       } else {
         console.error('Error deleting batch');
@@ -103,8 +110,16 @@ const Batchs = () => {
                 <span className="actions flex gap-4">
                   <BsFillTrashFill
                     className="delete-btn cursor-pointer"
-                    onClick={() => deleteRow(idx)}
+                    onClick={toogleShowModal}
                   />
+                  <DeleteModal
+                    showModal={showModal}
+                    toogleShowModal={toogleShowModal}
+                    rowIdx={idx}
+                    deleteRow={deleteRow}
+                    entityName={'batchs'}
+                    handleRefresh={handleRefresh}
+                  ></DeleteModal>
                   <BsFillPencilFill
                     className="edit-btn cursor-pointer"
                     onClick={() => editRow(idx)}

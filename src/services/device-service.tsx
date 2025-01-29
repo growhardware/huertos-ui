@@ -98,7 +98,7 @@ export const updateDevice = (msg) => {
   // event.preventDefault();
 };
 
-export const deleteDevice = async (id) => {
+export const deleteDevice = async (id): Promise<string> => {
   const reqOptions = {
     method: 'delete',
     url: `/device/${id}`,

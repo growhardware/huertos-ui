@@ -5,11 +5,39 @@ import { DevicesSvg } from '../../components/Svg/DevicesSvg';
 import io from '../../services/socket';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import { auth, useAuthContext } from '../../hooks/useAuthContext';
+import { DeleteModal } from '../../components/Modals/DeleteModal';
+import { handleRefresh } from '../../utils/utils';
 
 const Environments = () => {
   const [environments, setEnvironments] = useState<any[]>([]);
   const { username, setUsername } = useAuthContext();
+  const [showModal, handleClose] = useState<boolean>(false);
   const navigate = useNavigate();
+  // A function to toggle the feature enabled state
+  const toogleShowModal = () => {
+    handleClose((prevState) => !prevState);
+  };
+
+  const deleteRow = (idx: number) => {
+    const environmentToDelete = environments[idx];
+    // Call API to delete the environment or handle deletion logic here
+    io.socket.delete(
+      `/environment/${environmentToDelete.id}`,
+      (response: any) => {
+        if (response.id === environmentToDelete.id) {
+          setEnvironments(environments.filter((_, index) => index !== idx));
+        } else {
+          console.error('Error deleting environment');
+        }
+      },
+    );
+  };
+
+  // Handle edit and delete actions
+  const editRow = (idx: number) => {
+    const environmentToEdit = environments[idx];
+    navigate(`/environment/update/${environmentToEdit.id}`);
+  };
 
   useEffect(() => {
     // user's environments
@@ -67,9 +95,16 @@ const Environments = () => {
                 <span className="actions flex grid-cols-2 gap-4">
                   <BsFillTrashFill
                     className="delete-btn cursor-pointer"
-                    onClick={() => deleteRow(idx)}
+                    onClick={toogleShowModal}
                   />
-
+                  <DeleteModal
+                    showModal={showModal}
+                    toogleShowModal={toogleShowModal}
+                    rowIdx={idx}
+                    deleteRow={deleteRow}
+                    entityName={'environments'}
+                    handleRefresh={() => handleRefresh('/environments')}
+                  ></DeleteModal>
                   <BsFillPencilFill
                     className="edit-btn cursor-pointer"
                     onClick={() => editRow(idx)}

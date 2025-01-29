@@ -1,7 +1,9 @@
 import React, { ReactNode, useState } from 'react';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
-import { DeleteModal } from '../Modals/DeleteModal';
+import { DeleteDeviceModal } from '../Modals/DeleteDeviceModal';
+import { deleteDevice } from '../../services/device-service';
+
 interface CardDeviceStatsProps {
   closeModal: () => {};
   title: string;
@@ -10,6 +12,7 @@ interface CardDeviceStatsProps {
   levelUp?: boolean;
   levelDown?: boolean;
   children: ReactNode;
+  handleRefresh: () => void;
 }
 
 const CardDeviceStats: React.FC<CardDeviceStatsProps> = ({
@@ -19,7 +22,9 @@ const CardDeviceStats: React.FC<CardDeviceStatsProps> = ({
   levelUp,
   levelDown,
   children,
+  handleRefresh,
 }) => {
+  const entityName = `device`;
   const navigate = useNavigate();
   const [showModal, handleClose] = useState<boolean>(false);
 
@@ -32,12 +37,14 @@ const CardDeviceStats: React.FC<CardDeviceStatsProps> = ({
   return (
     <>
       {/* <div onClick={() => setShow(true)}>showModal: {JSON.stringify(show)}</div> */}
-      <DeleteModal
+      <DeleteDeviceModal
         showModal={showModal}
         toogleShowModal={toogleShowModal}
-        idDevice={id}
+        entityId={id}
+        deleteFunction={deleteDevice}
+        entityName={entityName}
         // handleShow={handleShow}
-      ></DeleteModal>
+      ></DeleteDeviceModal>
       <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
           <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
