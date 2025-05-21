@@ -13,12 +13,13 @@ const getApi = () => {
   api.sails.environment = 'development';
 
   // api.sails.url = 'http://192.168.1.47:1337';
-  api.sails.url = 'http://localhost:1337';
+  // api.sails.url = 'http://localhost:1337';
+  api.sails.url = 'http://localhost:3000';
   return api;
 };
 
 const fetchCookie = async () => {
-  const response = await fetch('http://localhost:1337/__getcookie', {
+  const response = await fetch('http://localhost:3000/__getcookie', {
     mode: 'no-cors',
   });
   // waits until the request completes...
