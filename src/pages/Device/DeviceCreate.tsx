@@ -104,6 +104,12 @@ const DeviceCreate = () => {
                       concept-medulla
                     </option>
                     <option
+                      value="light-medulla"
+                      className="text-body dark:text-bodydark"
+                    >
+                      light-medulla
+                    </option>
+                    <option
                       value="water-medulla"
                       className="text-body dark:text-bodydark"
                     >
