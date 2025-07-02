@@ -1,68 +1,107 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# TailAdmin React - Free React Tailwind Admin Dashboard Template
 
-## Available Scripts
+TailAdmin is a free and open-source admin dashboard template built on **React and Tailwind CSS**, providing developers with everything they need to create a comprehensive, data-driven back-end,
+dashboard, or admin panel solution for upcoming web projects.
 
-In the project directory, you can run:
+[![tailwind react admin template](https://ucarecdn.com/d2a6daed-eb9c-4c2f-8a95-4419c450e23a/tailadminreact.jpg)](https://react-demo.tailadmin.com/)
 
-### `npm start`
+With TailAdmin, you get access to all the necessary dashboard UI components, elements, and pages required to build a feature-rich and complete dashboard or admin panel. Whether you're building dashboard or admin panel for a complex web application or a simple website, TailAdmin is the perfect solution to help you get up and running quickly.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### [✨ Visit Website](https://tailadmin.com/)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### [🚀 PRO Demo](https://react-demo.tailadmin.com/)
 
-### `npm test`
+### [🚀 FREE Demo](https://free-react-demo.tailadmin.com/)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### TailAdmin React PRO vs TailAdmin React FREE Comparison 📊
 
-### `npm run build`
+#### [TailAdmin React PRO](https://react-demo.tailadmin.com/)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 4 Unique Dashboards: Analytics, Ecommerce, Marketing, and CRM (More will be added)
+- 120+ Dashboard UI Components
+- 200+ Total UI Elements
+- 45+ HTML Files
+- All Essential Elements and Files
+- Full Figma Design Source - As Shown on Demo
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### [TailAdmin React FREE](https://free-react-demo.tailadmin.com/)
 
-### `npm run eject`
+- 1 Unique Dashboard
+- 30+ Dashboard UI Components
+- 50+ Total UI Elements
+- 10+ HTML Files
+- TypeScript Support
+- Basic UI Kit Elements and Files
+- Figma Design Source - Free Sample
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### [⬇️ Download Now](https://tailadmin.com/download)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### [⚡ Get PRO Version](https://tailadmin.com/pricing)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### [📄 Documentation/Installation](https://tailadmin.com/docs)
 
-## Learn More
+### [🖌️ TailAdmin Figma Free Sample](https://www.figma.com/community/file/1214477970819985778)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### [👉 TailAdmin HTML Version](https://github.com/TailAdmin/tailadmin-free-tailwind-dashboard-template)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+TailAdmin React dashboard template based on Tailwind CSS is a pre-designed starting point for building a web-based dashboard using the React JavaScript library and the Tailwind CSS utility-first framework. This Tailwind CSS + React Dashboard Template - built using Tailwind CSS and **includes pre-built components, such as navigation menus, charts, tables, and forms, which can be easily customized and integrated into a small-to-large React web application**.
 
-### Code Splitting
+If you're looking for a high-quality **React-Tailwind Dashboard, Admin Panel Template, or UI Kit**, TailAdmin will be the perfect choice for you!
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## TailAdmin React - Installation
 
-### Analyzing the Bundle Size
+You'll need to install Node.js >=v14.16+ (Recommended Version) (NPM comes along with it) and TailAdmin uses **Vite** for frontend tooling, to peform installation and building production version, please follow these steps from below:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+- Use terminal and navigate to the project (tailadmin-react) root.
 
-### Making a Progressive Web App
+- Then run : <code>npm install</code>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+- Then run : <code>npm run dev</code>
 
-### Advanced Configuration
+Now, in the browser go to <code>localhost:5173</code>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+**For Production Build**
+Run : <code>npm run build</code>
 
-### Deployment
+Default build output directory: /dist
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+This command will generate a dist as build folder in the root of your template that you can upload to your server.
 
-### `npm run build` fails to minify
+## Tons of React Tailwind Components for Dashboard
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+React and Tailwind are two popular technologies that have taken the web development world by storm. React is a JavaScript library for building user interfaces, while Tailwind is a utility-first CSS framework that makes it easy to style web applications. TailAdmin React Offers 200+ Essential React + Tailwind CSS UI Components that you copy-paste and use with your dashboard projects. That includes - charts, graphs, navbars, tabs, buttons, cards, tables, profile, tabs, forms, modals, app pages, calender, web apps example templates and more... for React and Styled using Tailwind CSS
+
+## Update Logs
+
+### Version 1.3.7 - [June 20, 2024]
+
+#### Enhancements
+
+- **Enhancement 01:** Remove Repetition of DefaultLayout in every Pages
+- **Enhancement 02:** Add ClickOutside Component for reduce repeated functionality in Header Message, Notification and User Dropdowns.
+
+### Version 1.3.6 - [Jan 31, 2024]
+
+#### Enhancements
+
+- **Enhancement 01:** Integrate flatpickr in [Date Picker/Form Elements]
+- **Enhancement 02:** Change color after select an option [Select Element/Form Elements].
+- **Enhancement 03:** Make it functional [Multiselect Dropdown/Form Elements].
+- **Enhancement 04:** Make best value editable [Pricing Table One/Pricing Table].
+- **Enhancement 05:** Rearrange Folder structure.
+
+### Version 1.2.0 - [Apr 28, 2023]
+
+- Add Typescript in TailAdmin React.
+
+### Version 1.0.0 - Initial Release - [Mar 13, 2023]
+
+- Initial release of TailAdmin React.
+
+<!-- final tag for the huertosUI mvp kick off version
+migrate the feature from huertos-ui (registration, login, logout, devices)
+add calendar and charts -->
